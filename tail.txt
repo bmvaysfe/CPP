@@ -1,0 +1,10 @@
+Hello
+CIS 717.1 A
+CIS 25 A
+Core 8.1 B
+Core 8.2 B+
+English 2 B+
+This 
+is
+a
+test
