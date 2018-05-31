@@ -1,0 +1,1394 @@
+Testing constructors
+
+_____________________________________
+
+Testing default constructor
+
+Solid [(0,0,0),(1,1,1)]
+face[0] is red=1   green=1   blue=1
+face[1] is red=1   green=1   blue=1
+face[2] is red=1   green=1   blue=1
+face[3] is red=1   green=1   blue=1
+face[4] is red=1   green=1   blue=1
+face[5] is red=1   green=1   blue=1
+
+_____________________________________
+
+Testing constructor that accepts 2 Points and 1 Color.
+
+Points (5,5,2.12) and (-3,2,0)
+do not constitute a valid solid.
+The white solid [(0,0,0),(1,1,1)] is created.
+
+This is D11
+Solid [(-3,2,0),(5,5,2.12)]
+face[0] is red=0.2   green=0.4   blue=0.6
+face[1] is red=0.2   green=0.4   blue=0.6
+face[2] is red=0.2   green=0.4   blue=0.6
+face[3] is red=0.2   green=0.4   blue=0.6
+face[4] is red=0.2   green=0.4   blue=0.6
+face[5] is red=0.2   green=0.4   blue=0.6
+
+*********************************************************
+
+This is D12
+Solid [(0,0,0),(1,1,1)]
+face[0] is red=1   green=1   blue=1
+face[1] is red=1   green=1   blue=1
+face[2] is red=1   green=1   blue=1
+face[3] is red=1   green=1   blue=1
+face[4] is red=1   green=1   blue=1
+face[5] is red=1   green=1   blue=1
+
+*********************************************************
+
+This is D13
+Solid [(-3,2,0),(-3,2,0)]
+face[0] is red=0.2   green=0.4   blue=0.6
+face[1] is red=0.2   green=0.4   blue=0.6
+face[2] is red=0.2   green=0.4   blue=0.6
+face[3] is red=0.2   green=0.4   blue=0.6
+face[4] is red=0.2   green=0.4   blue=0.6
+face[5] is red=0.2   green=0.4   blue=0.6
+
+*********************************************************
+
+_____________________________________
+
+Testing constructor that accepts 2 Points and array of 6 Colors.
+
+This is D14
+
+Solid [(-3,2,0),(5,5,2.12)]
+face[0] is red=0   green=0   blue=0
+face[1] is red=0.1   green=0.1   blue=0.1
+face[2] is red=0.2   green=0.2   blue=0.2
+face[3] is red=0.3   green=0.3   blue=0.3
+face[4] is red=0.4   green=0.4   blue=0.4
+face[5] is red=0.5   green=0.5   blue=0.5
+
+
+*********************************************************
+
+Points (5,5,2.12) and (-3,2,0)
+do not constitute a valid solid.
+The white solid [(0,0,0),(1,1,1)] is created.
+
+This is D15
+
+Solid [(0,0,0),(1,1,1)]
+face[0] is red=1   green=1   blue=1
+face[1] is red=1   green=1   blue=1
+face[2] is red=1   green=1   blue=1
+face[3] is red=1   green=1   blue=1
+face[4] is red=1   green=1   blue=1
+face[5] is red=1   green=1   blue=1
+
+
+*********************************************************
+
+This is D16
+
+Solid [(-3,2,0),(-3,2,0)]
+face[0] is red=0   green=0   blue=0
+face[1] is red=0.1   green=0.1   blue=0.1
+face[2] is red=0.2   green=0.2   blue=0.2
+face[3] is red=0.3   green=0.3   blue=0.3
+face[4] is red=0.4   green=0.4   blue=0.4
+face[5] is red=0.5   green=0.5   blue=0.5
+
+
+*********************************************************
+
+_____________________________________
+
+Testing copy constructor
+
+Solid [(-3,2,0),(5,5,2.12)]
+face[0] is red=0.2   green=0.4   blue=0.6
+face[1] is red=0.2   green=0.4   blue=0.6
+face[2] is red=0.2   green=0.4   blue=0.6
+face[3] is red=0.2   green=0.4   blue=0.6
+face[4] is red=0.2   green=0.4   blue=0.6
+face[5] is red=0.2   green=0.4   blue=0.6
+
+Now I delete ptr, but D11 still exists.
+Here is D11
+Solid [(-3,2,0),(5,5,2.12)]
+face[0] is red=0.2   green=0.4   blue=0.6
+face[1] is red=0.2   green=0.4   blue=0.6
+face[2] is red=0.2   green=0.4   blue=0.6
+face[3] is red=0.2   green=0.4   blue=0.6
+face[4] is red=0.2   green=0.4   blue=0.6
+face[5] is red=0.2   green=0.4   blue=0.6
+
+
+*********************************************************
+
+Here is D11 again.
+Solid [(-3,2,0),(5,5,2.12)]
+face[0] is red=0.2   green=0.4   blue=0.6
+face[1] is red=0.2   green=0.4   blue=0.6
+face[2] is red=0.2   green=0.4   blue=0.6
+face[3] is red=0.2   green=0.4   blue=0.6
+face[4] is red=0.2   green=0.4   blue=0.6
+face[5] is red=0.2   green=0.4   blue=0.6
+
+
+Solid RR is a copy of solid D11
+Here is RR
+Solid [(-3,2,0),(5,5,2.12)]
+face[0] is red=0.2   green=0.4   blue=0.6
+face[1] is red=0.2   green=0.4   blue=0.6
+face[2] is red=0.2   green=0.4   blue=0.6
+face[3] is red=0.2   green=0.4   blue=0.6
+face[4] is red=0.2   green=0.4   blue=0.6
+face[5] is red=0.2   green=0.4   blue=0.6
+
+
+_____________________________________
+
+Testing assignment operator
+
+This is solid R
+Solid [(0,0,0),(1,1,1)]
+face[0] is red=1   green=1   blue=1
+face[1] is red=1   green=1   blue=1
+face[2] is red=1   green=1   blue=1
+face[3] is red=1   green=1   blue=1
+face[4] is red=1   green=1   blue=1
+face[5] is red=1   green=1   blue=1
+
+
+Here is D11
+Solid [(-3,2,0),(5,5,2.12)]
+face[0] is red=0.2   green=0.4   blue=0.6
+face[1] is red=0.2   green=0.4   blue=0.6
+face[2] is red=0.2   green=0.4   blue=0.6
+face[3] is red=0.2   green=0.4   blue=0.6
+face[4] is red=0.2   green=0.4   blue=0.6
+face[5] is red=0.2   green=0.4   blue=0.6
+
+
+Here is R
+Solid [(-3,2,0),(5,5,2.12)]
+face[0] is red=0.2   green=0.4   blue=0.6
+face[1] is red=0.2   green=0.4   blue=0.6
+face[2] is red=0.2   green=0.4   blue=0.6
+face[3] is red=0.2   green=0.4   blue=0.6
+face[4] is red=0.2   green=0.4   blue=0.6
+face[5] is red=0.2   green=0.4   blue=0.6
+
+
+This is D12
+Solid [(0,0,0),(1,1,1)]
+face[0] is red=1   green=1   blue=1
+face[1] is red=1   green=1   blue=1
+face[2] is red=1   green=1   blue=1
+face[3] is red=1   green=1   blue=1
+face[4] is red=1   green=1   blue=1
+face[5] is red=1   green=1   blue=1
+
+Here is R
+Solid [(0,0,0),(1,1,1)]
+face[0] is red=1   green=1   blue=1
+face[1] is red=1   green=1   blue=1
+face[2] is red=1   green=1   blue=1
+face[3] is red=1   green=1   blue=1
+face[4] is red=1   green=1   blue=1
+face[5] is red=1   green=1   blue=1
+
+
+_____________________________________
+
+Testing rotation
+_____________________________________
+
+D14 before rotation
+
+Solid [(-3,2,0),(5,5,2.12)]
+face[0] is red=0   green=0   blue=0
+face[1] is red=0.1   green=0.1   blue=0.1
+face[2] is red=0.2   green=0.2   blue=0.2
+face[3] is red=0.3   green=0.3   blue=0.3
+face[4] is red=0.4   green=0.4   blue=0.4
+face[5] is red=0.5   green=0.5   blue=0.5
+
+This is counter-clockwise rotation.
+Solid is rotated 10 times.
+
+Rotated D14 is:
+
+Solid [(-3,2,0),(5,5,2.12)]
+face[0] is red=0.2   green=0.2   blue=0.2
+face[1] is red=0.3   green=0.3   blue=0.3
+face[2] is red=0   green=0   blue=0
+face[3] is red=0.1   green=0.1   blue=0.1
+face[4] is red=0.4   green=0.4   blue=0.4
+face[5] is red=0.5   green=0.5   blue=0.5
+
+***********************************************
+
+D14 before rotation
+
+Solid [(-3,2,0),(5,5,2.12)]
+face[0] is red=0   green=0   blue=0
+face[1] is red=0.1   green=0.1   blue=0.1
+face[2] is red=0.2   green=0.2   blue=0.2
+face[3] is red=0.3   green=0.3   blue=0.3
+face[4] is red=0.4   green=0.4   blue=0.4
+face[5] is red=0.5   green=0.5   blue=0.5
+
+This is counter-clockwise rotation.
+Solid is rotated 9 times.
+
+Rotated D14 is:
+
+Solid [(-0.5,-0.5,0),(2.5,7.5,2.12)]
+face[0] is red=0.3   green=0.3   blue=0.3
+face[1] is red=0   green=0   blue=0
+face[2] is red=0.1   green=0.1   blue=0.1
+face[3] is red=0.2   green=0.2   blue=0.2
+face[4] is red=0.4   green=0.4   blue=0.4
+face[5] is red=0.5   green=0.5   blue=0.5
+
+***********************************************
+
+D14 before rotation
+
+Solid [(-3,2,0),(5,5,2.12)]
+face[0] is red=0   green=0   blue=0
+face[1] is red=0.1   green=0.1   blue=0.1
+face[2] is red=0.2   green=0.2   blue=0.2
+face[3] is red=0.3   green=0.3   blue=0.3
+face[4] is red=0.4   green=0.4   blue=0.4
+face[5] is red=0.5   green=0.5   blue=0.5
+
+This is counter-clockwise rotation.
+Solid is rotated 8 times.
+
+Rotated D14 is:
+
+Solid [(-3,2,0),(5,5,2.12)]
+face[0] is red=0   green=0   blue=0
+face[1] is red=0.1   green=0.1   blue=0.1
+face[2] is red=0.2   green=0.2   blue=0.2
+face[3] is red=0.3   green=0.3   blue=0.3
+face[4] is red=0.4   green=0.4   blue=0.4
+face[5] is red=0.5   green=0.5   blue=0.5
+
+***********************************************
+
+D14 before rotation
+
+Solid [(-3,2,0),(5,5,2.12)]
+face[0] is red=0   green=0   blue=0
+face[1] is red=0.1   green=0.1   blue=0.1
+face[2] is red=0.2   green=0.2   blue=0.2
+face[3] is red=0.3   green=0.3   blue=0.3
+face[4] is red=0.4   green=0.4   blue=0.4
+face[5] is red=0.5   green=0.5   blue=0.5
+
+This is counter-clockwise rotation.
+Solid is rotated 7 times.
+
+Rotated D14 is:
+
+Solid [(-0.5,-0.5,0),(2.5,7.5,2.12)]
+face[0] is red=0.1   green=0.1   blue=0.1
+face[1] is red=0.2   green=0.2   blue=0.2
+face[2] is red=0.3   green=0.3   blue=0.3
+face[3] is red=0   green=0   blue=0
+face[4] is red=0.4   green=0.4   blue=0.4
+face[5] is red=0.5   green=0.5   blue=0.5
+
+***********************************************
+
+D14 before rotation
+
+Solid [(-3,2,0),(5,5,2.12)]
+face[0] is red=0   green=0   blue=0
+face[1] is red=0.1   green=0.1   blue=0.1
+face[2] is red=0.2   green=0.2   blue=0.2
+face[3] is red=0.3   green=0.3   blue=0.3
+face[4] is red=0.4   green=0.4   blue=0.4
+face[5] is red=0.5   green=0.5   blue=0.5
+
+This is counter-clockwise rotation.
+Solid is rotated 6 times.
+
+Rotated D14 is:
+
+Solid [(-3,2,0),(5,5,2.12)]
+face[0] is red=0.2   green=0.2   blue=0.2
+face[1] is red=0.3   green=0.3   blue=0.3
+face[2] is red=0   green=0   blue=0
+face[3] is red=0.1   green=0.1   blue=0.1
+face[4] is red=0.4   green=0.4   blue=0.4
+face[5] is red=0.5   green=0.5   blue=0.5
+
+***********************************************
+
+D14 before rotation
+
+Solid [(-3,2,0),(5,5,2.12)]
+face[0] is red=0   green=0   blue=0
+face[1] is red=0.1   green=0.1   blue=0.1
+face[2] is red=0.2   green=0.2   blue=0.2
+face[3] is red=0.3   green=0.3   blue=0.3
+face[4] is red=0.4   green=0.4   blue=0.4
+face[5] is red=0.5   green=0.5   blue=0.5
+
+This is counter-clockwise rotation.
+Solid is rotated 5 times.
+
+Rotated D14 is:
+
+Solid [(-0.5,-0.5,0),(2.5,7.5,2.12)]
+face[0] is red=0.3   green=0.3   blue=0.3
+face[1] is red=0   green=0   blue=0
+face[2] is red=0.1   green=0.1   blue=0.1
+face[3] is red=0.2   green=0.2   blue=0.2
+face[4] is red=0.4   green=0.4   blue=0.4
+face[5] is red=0.5   green=0.5   blue=0.5
+
+***********************************************
+
+D14 before rotation
+
+Solid [(-3,2,0),(5,5,2.12)]
+face[0] is red=0   green=0   blue=0
+face[1] is red=0.1   green=0.1   blue=0.1
+face[2] is red=0.2   green=0.2   blue=0.2
+face[3] is red=0.3   green=0.3   blue=0.3
+face[4] is red=0.4   green=0.4   blue=0.4
+face[5] is red=0.5   green=0.5   blue=0.5
+
+This is counter-clockwise rotation.
+Solid is rotated 4 times.
+
+Rotated D14 is:
+
+Solid [(-3,2,0),(5,5,2.12)]
+face[0] is red=0   green=0   blue=0
+face[1] is red=0.1   green=0.1   blue=0.1
+face[2] is red=0.2   green=0.2   blue=0.2
+face[3] is red=0.3   green=0.3   blue=0.3
+face[4] is red=0.4   green=0.4   blue=0.4
+face[5] is red=0.5   green=0.5   blue=0.5
+
+***********************************************
+
+D14 before rotation
+
+Solid [(-3,2,0),(5,5,2.12)]
+face[0] is red=0   green=0   blue=0
+face[1] is red=0.1   green=0.1   blue=0.1
+face[2] is red=0.2   green=0.2   blue=0.2
+face[3] is red=0.3   green=0.3   blue=0.3
+face[4] is red=0.4   green=0.4   blue=0.4
+face[5] is red=0.5   green=0.5   blue=0.5
+
+This is counter-clockwise rotation.
+Solid is rotated 3 times.
+
+Rotated D14 is:
+
+Solid [(-0.5,-0.5,0),(2.5,7.5,2.12)]
+face[0] is red=0.1   green=0.1   blue=0.1
+face[1] is red=0.2   green=0.2   blue=0.2
+face[2] is red=0.3   green=0.3   blue=0.3
+face[3] is red=0   green=0   blue=0
+face[4] is red=0.4   green=0.4   blue=0.4
+face[5] is red=0.5   green=0.5   blue=0.5
+
+***********************************************
+
+D14 before rotation
+
+Solid [(-3,2,0),(5,5,2.12)]
+face[0] is red=0   green=0   blue=0
+face[1] is red=0.1   green=0.1   blue=0.1
+face[2] is red=0.2   green=0.2   blue=0.2
+face[3] is red=0.3   green=0.3   blue=0.3
+face[4] is red=0.4   green=0.4   blue=0.4
+face[5] is red=0.5   green=0.5   blue=0.5
+
+This is counter-clockwise rotation.
+Solid is rotated 2 times.
+
+Rotated D14 is:
+
+Solid [(-3,2,0),(5,5,2.12)]
+face[0] is red=0.2   green=0.2   blue=0.2
+face[1] is red=0.3   green=0.3   blue=0.3
+face[2] is red=0   green=0   blue=0
+face[3] is red=0.1   green=0.1   blue=0.1
+face[4] is red=0.4   green=0.4   blue=0.4
+face[5] is red=0.5   green=0.5   blue=0.5
+
+***********************************************
+
+D14 before rotation
+
+Solid [(-3,2,0),(5,5,2.12)]
+face[0] is red=0   green=0   blue=0
+face[1] is red=0.1   green=0.1   blue=0.1
+face[2] is red=0.2   green=0.2   blue=0.2
+face[3] is red=0.3   green=0.3   blue=0.3
+face[4] is red=0.4   green=0.4   blue=0.4
+face[5] is red=0.5   green=0.5   blue=0.5
+
+This is counter-clockwise rotation.
+Solid is rotated 1 times.
+
+Rotated D14 is:
+
+Solid [(-0.5,-0.5,0),(2.5,7.5,2.12)]
+face[0] is red=0.3   green=0.3   blue=0.3
+face[1] is red=0   green=0   blue=0
+face[2] is red=0.1   green=0.1   blue=0.1
+face[3] is red=0.2   green=0.2   blue=0.2
+face[4] is red=0.4   green=0.4   blue=0.4
+face[5] is red=0.5   green=0.5   blue=0.5
+
+***********************************************
+
+D14 before rotation
+
+Solid [(-3,2,0),(5,5,2.12)]
+face[0] is red=0   green=0   blue=0
+face[1] is red=0.1   green=0.1   blue=0.1
+face[2] is red=0.2   green=0.2   blue=0.2
+face[3] is red=0.3   green=0.3   blue=0.3
+face[4] is red=0.4   green=0.4   blue=0.4
+face[5] is red=0.5   green=0.5   blue=0.5
+
+
+Rotation 0 times of 
+
+Solid [(-3,2,0),(5,5,2.12)]
+face[0] is red=0   green=0   blue=0
+face[1] is red=0.1   green=0.1   blue=0.1
+face[2] is red=0.2   green=0.2   blue=0.2
+face[3] is red=0.3   green=0.3   blue=0.3
+face[4] is red=0.4   green=0.4   blue=0.4
+face[5] is red=0.5   green=0.5   blue=0.5
+
+is impossible!
+
+Rotated D14 is:
+
+Solid [(-3,2,0),(5,5,2.12)]
+face[0] is red=0   green=0   blue=0
+face[1] is red=0.1   green=0.1   blue=0.1
+face[2] is red=0.2   green=0.2   blue=0.2
+face[3] is red=0.3   green=0.3   blue=0.3
+face[4] is red=0.4   green=0.4   blue=0.4
+face[5] is red=0.5   green=0.5   blue=0.5
+
+***********************************************
+
+D14 before rotation
+
+Solid [(-3,2,0),(5,5,2.12)]
+face[0] is red=0   green=0   blue=0
+face[1] is red=0.1   green=0.1   blue=0.1
+face[2] is red=0.2   green=0.2   blue=0.2
+face[3] is red=0.3   green=0.3   blue=0.3
+face[4] is red=0.4   green=0.4   blue=0.4
+face[5] is red=0.5   green=0.5   blue=0.5
+
+This is clockwise rotation.
+Solid is rotated 1 times.
+
+Rotated D14 is:
+
+Solid [(-0.5,-0.5,0),(2.5,7.5,2.12)]
+face[0] is red=0.1   green=0.1   blue=0.1
+face[1] is red=0.2   green=0.2   blue=0.2
+face[2] is red=0.3   green=0.3   blue=0.3
+face[3] is red=0   green=0   blue=0
+face[4] is red=0.4   green=0.4   blue=0.4
+face[5] is red=0.5   green=0.5   blue=0.5
+
+***********************************************
+
+D14 before rotation
+
+Solid [(-3,2,0),(5,5,2.12)]
+face[0] is red=0   green=0   blue=0
+face[1] is red=0.1   green=0.1   blue=0.1
+face[2] is red=0.2   green=0.2   blue=0.2
+face[3] is red=0.3   green=0.3   blue=0.3
+face[4] is red=0.4   green=0.4   blue=0.4
+face[5] is red=0.5   green=0.5   blue=0.5
+
+This is clockwise rotation.
+Solid is rotated 2 times.
+
+Rotated D14 is:
+
+Solid [(-3,2,0),(5,5,2.12)]
+face[0] is red=0.2   green=0.2   blue=0.2
+face[1] is red=0.3   green=0.3   blue=0.3
+face[2] is red=0   green=0   blue=0
+face[3] is red=0.1   green=0.1   blue=0.1
+face[4] is red=0.4   green=0.4   blue=0.4
+face[5] is red=0.5   green=0.5   blue=0.5
+
+***********************************************
+
+D14 before rotation
+
+Solid [(-3,2,0),(5,5,2.12)]
+face[0] is red=0   green=0   blue=0
+face[1] is red=0.1   green=0.1   blue=0.1
+face[2] is red=0.2   green=0.2   blue=0.2
+face[3] is red=0.3   green=0.3   blue=0.3
+face[4] is red=0.4   green=0.4   blue=0.4
+face[5] is red=0.5   green=0.5   blue=0.5
+
+This is clockwise rotation.
+Solid is rotated 3 times.
+
+Rotated D14 is:
+
+Solid [(-0.5,-0.5,0),(2.5,7.5,2.12)]
+face[0] is red=0.3   green=0.3   blue=0.3
+face[1] is red=0   green=0   blue=0
+face[2] is red=0.1   green=0.1   blue=0.1
+face[3] is red=0.2   green=0.2   blue=0.2
+face[4] is red=0.4   green=0.4   blue=0.4
+face[5] is red=0.5   green=0.5   blue=0.5
+
+***********************************************
+
+D14 before rotation
+
+Solid [(-3,2,0),(5,5,2.12)]
+face[0] is red=0   green=0   blue=0
+face[1] is red=0.1   green=0.1   blue=0.1
+face[2] is red=0.2   green=0.2   blue=0.2
+face[3] is red=0.3   green=0.3   blue=0.3
+face[4] is red=0.4   green=0.4   blue=0.4
+face[5] is red=0.5   green=0.5   blue=0.5
+
+This is clockwise rotation.
+Solid is rotated 4 times.
+
+Rotated D14 is:
+
+Solid [(-3,2,0),(5,5,2.12)]
+face[0] is red=0   green=0   blue=0
+face[1] is red=0.1   green=0.1   blue=0.1
+face[2] is red=0.2   green=0.2   blue=0.2
+face[3] is red=0.3   green=0.3   blue=0.3
+face[4] is red=0.4   green=0.4   blue=0.4
+face[5] is red=0.5   green=0.5   blue=0.5
+
+***********************************************
+
+D14 before rotation
+
+Solid [(-3,2,0),(5,5,2.12)]
+face[0] is red=0   green=0   blue=0
+face[1] is red=0.1   green=0.1   blue=0.1
+face[2] is red=0.2   green=0.2   blue=0.2
+face[3] is red=0.3   green=0.3   blue=0.3
+face[4] is red=0.4   green=0.4   blue=0.4
+face[5] is red=0.5   green=0.5   blue=0.5
+
+This is clockwise rotation.
+Solid is rotated 5 times.
+
+Rotated D14 is:
+
+Solid [(-0.5,-0.5,0),(2.5,7.5,2.12)]
+face[0] is red=0.1   green=0.1   blue=0.1
+face[1] is red=0.2   green=0.2   blue=0.2
+face[2] is red=0.3   green=0.3   blue=0.3
+face[3] is red=0   green=0   blue=0
+face[4] is red=0.4   green=0.4   blue=0.4
+face[5] is red=0.5   green=0.5   blue=0.5
+
+***********************************************
+
+D14 before rotation
+
+Solid [(-3,2,0),(5,5,2.12)]
+face[0] is red=0   green=0   blue=0
+face[1] is red=0.1   green=0.1   blue=0.1
+face[2] is red=0.2   green=0.2   blue=0.2
+face[3] is red=0.3   green=0.3   blue=0.3
+face[4] is red=0.4   green=0.4   blue=0.4
+face[5] is red=0.5   green=0.5   blue=0.5
+
+This is clockwise rotation.
+Solid is rotated 6 times.
+
+Rotated D14 is:
+
+Solid [(-3,2,0),(5,5,2.12)]
+face[0] is red=0.2   green=0.2   blue=0.2
+face[1] is red=0.3   green=0.3   blue=0.3
+face[2] is red=0   green=0   blue=0
+face[3] is red=0.1   green=0.1   blue=0.1
+face[4] is red=0.4   green=0.4   blue=0.4
+face[5] is red=0.5   green=0.5   blue=0.5
+
+***********************************************
+
+D14 before rotation
+
+Solid [(-3,2,0),(5,5,2.12)]
+face[0] is red=0   green=0   blue=0
+face[1] is red=0.1   green=0.1   blue=0.1
+face[2] is red=0.2   green=0.2   blue=0.2
+face[3] is red=0.3   green=0.3   blue=0.3
+face[4] is red=0.4   green=0.4   blue=0.4
+face[5] is red=0.5   green=0.5   blue=0.5
+
+This is clockwise rotation.
+Solid is rotated 7 times.
+
+Rotated D14 is:
+
+Solid [(-0.5,-0.5,0),(2.5,7.5,2.12)]
+face[0] is red=0.3   green=0.3   blue=0.3
+face[1] is red=0   green=0   blue=0
+face[2] is red=0.1   green=0.1   blue=0.1
+face[3] is red=0.2   green=0.2   blue=0.2
+face[4] is red=0.4   green=0.4   blue=0.4
+face[5] is red=0.5   green=0.5   blue=0.5
+
+***********************************************
+
+D14 before rotation
+
+Solid [(-3,2,0),(5,5,2.12)]
+face[0] is red=0   green=0   blue=0
+face[1] is red=0.1   green=0.1   blue=0.1
+face[2] is red=0.2   green=0.2   blue=0.2
+face[3] is red=0.3   green=0.3   blue=0.3
+face[4] is red=0.4   green=0.4   blue=0.4
+face[5] is red=0.5   green=0.5   blue=0.5
+
+This is clockwise rotation.
+Solid is rotated 8 times.
+
+Rotated D14 is:
+
+Solid [(-3,2,0),(5,5,2.12)]
+face[0] is red=0   green=0   blue=0
+face[1] is red=0.1   green=0.1   blue=0.1
+face[2] is red=0.2   green=0.2   blue=0.2
+face[3] is red=0.3   green=0.3   blue=0.3
+face[4] is red=0.4   green=0.4   blue=0.4
+face[5] is red=0.5   green=0.5   blue=0.5
+
+***********************************************
+
+D14 before rotation
+
+Solid [(-3,2,0),(5,5,2.12)]
+face[0] is red=0   green=0   blue=0
+face[1] is red=0.1   green=0.1   blue=0.1
+face[2] is red=0.2   green=0.2   blue=0.2
+face[3] is red=0.3   green=0.3   blue=0.3
+face[4] is red=0.4   green=0.4   blue=0.4
+face[5] is red=0.5   green=0.5   blue=0.5
+
+This is clockwise rotation.
+Solid is rotated 9 times.
+
+Rotated D14 is:
+
+Solid [(-0.5,-0.5,0),(2.5,7.5,2.12)]
+face[0] is red=0.1   green=0.1   blue=0.1
+face[1] is red=0.2   green=0.2   blue=0.2
+face[2] is red=0.3   green=0.3   blue=0.3
+face[3] is red=0   green=0   blue=0
+face[4] is red=0.4   green=0.4   blue=0.4
+face[5] is red=0.5   green=0.5   blue=0.5
+
+***********************************************
+
+Testing intersection of solids
+_____________________________________
+
+Part #2. Lists and ListIterators.
+_____________________________________
+
+
+List is empty!
+
+*************************************
+
+Printed list:
+
+-1
+
+
+*************************************
+
+
+*************************************
+
+Printed list:
+
+9
+8
+7
+6
+5
+4
+3
+2
+1
+-1
+131
+
+
+*************************************
+
+
+Removed from front 9
+
+*************************************
+
+Printed list:
+
+8
+7
+6
+5
+4
+3
+2
+1
+-1
+131
+
+
+*************************************
+
+Removed from rear 131
+After removal
+
+*************************************
+
+Printed list:
+
+8
+7
+6
+5
+4
+3
+2
+1
+-1
+
+
+*************************************
+
+This is L
+
+*************************************
+
+Printed list:
+
+18
+17
+16
+15
+14
+13
+12
+11
+9
+
+
+*************************************
+
+This is L1
+
+*************************************
+
+Printed list:
+
+18
+17
+16
+15
+14
+13
+12
+11
+9
+
+
+*************************************
+
+Finally:
+
+This is L
+
+*************************************
+
+Printed list:
+
+18
+17
+16
+15
+14
+13
+12
+11
+9
+
+
+*************************************
+
+This is L1
+
+*************************************
+
+Printed list:
+
+450
+425
+400
+375
+350
+325
+300
+275
+225
+
+
+*************************************
+
+This is L2
+
+*************************************
+
+Printed list:
+
+450
+425
+400
+375
+350
+325
+300
+275
+225
+
+
+*************************************
+
+*************
+-------------Iterator-traverse-of-L2-----------
+Item #0 is 
+450
+Item #1 is 
+425
+Item #2 is 
+400
+Item #3 is 
+375
+Item #4 is 
+350
+Item #5 is 
+325
+Item #6 is 
+300
+Item #7 is 
+275
+Item #8 is 
+225
+
+-------------Iterator-traverse-of-L1-----------
+Item #0
+ has 
+450
+Item #1
+ has 
+425
+Item #2
+ has 
+400
+Item #3
+ has 
+375
+Item #4
+ has 
+350
+Item #5
+ has 
+325
+Item #6
+ has 
+300
+Item #7
+ has 
+275
+Item #8
+ has 
+225
+NOW with Solids
+Item #0 is 
+
+Solid [(-3,2,0),(5,5,2.12)]
+face[0] is red=0.2   green=0.4   blue=0.6
+face[1] is red=0.2   green=0.4   blue=0.6
+face[2] is red=0.2   green=0.4   blue=0.6
+face[3] is red=0.2   green=0.4   blue=0.6
+face[4] is red=0.2   green=0.4   blue=0.6
+face[5] is red=0.2   green=0.4   blue=0.6
+
+
+Item #1 is 
+
+Solid [(-3,2,0),(-3,2,0)]
+face[0] is red=0   green=0   blue=0
+face[1] is red=0.1   green=0.1   blue=0.1
+face[2] is red=0.2   green=0.2   blue=0.2
+face[3] is red=0.3   green=0.3   blue=0.3
+face[4] is red=0.4   green=0.4   blue=0.4
+face[5] is red=0.5   green=0.5   blue=0.5
+
+
+Item #2 is 
+
+Solid [(-3,2,0),(-3,2,0)]
+face[0] is red=0.2   green=0.4   blue=0.6
+face[1] is red=0.2   green=0.4   blue=0.6
+face[2] is red=0.2   green=0.4   blue=0.6
+face[3] is red=0.2   green=0.4   blue=0.6
+face[4] is red=0.2   green=0.4   blue=0.6
+face[5] is red=0.2   green=0.4   blue=0.6
+
+
+Item #3 is 
+
+Solid [(-3,2,0),(5,5,2.12)]
+face[0] is red=0.2   green=0.4   blue=0.6
+face[1] is red=0.2   green=0.4   blue=0.6
+face[2] is red=0.2   green=0.4   blue=0.6
+face[3] is red=0.2   green=0.4   blue=0.6
+face[4] is red=0.2   green=0.4   blue=0.6
+face[5] is red=0.2   green=0.4   blue=0.6
+
+
+Item #4 is 
+
+Solid [(0,0,0),(1,1,1)]
+face[0] is red=1   green=1   blue=1
+face[1] is red=1   green=1   blue=1
+face[2] is red=1   green=1   blue=1
+face[3] is red=1   green=1   blue=1
+face[4] is red=1   green=1   blue=1
+face[5] is red=1   green=1   blue=1
+
+
+Item #5 is 
+
+Solid [(-3,2,0),(5,5,2.12)]
+face[0] is red=0   green=0   blue=0
+face[1] is red=0.1   green=0.1   blue=0.1
+face[2] is red=0.2   green=0.2   blue=0.2
+face[3] is red=0.3   green=0.3   blue=0.3
+face[4] is red=0.4   green=0.4   blue=0.4
+face[5] is red=0.5   green=0.5   blue=0.5
+
+
+Item #6 is 
+
+Solid [(0,0,0),(1,1,1)]
+face[0] is red=1   green=1   blue=1
+face[1] is red=1   green=1   blue=1
+face[2] is red=1   green=1   blue=1
+face[3] is red=1   green=1   blue=1
+face[4] is red=1   green=1   blue=1
+face[5] is red=1   green=1   blue=1
+
+
+Item #7 is 
+
+Solid [(-0.5,-0.5,0),(2.5,7.5,2.12)]
+face[0] is red=0.1   green=0.1   blue=0.1
+face[1] is red=0.2   green=0.2   blue=0.2
+face[2] is red=0.3   green=0.3   blue=0.3
+face[3] is red=0   green=0   blue=0
+face[4] is red=0.4   green=0.4   blue=0.4
+face[5] is red=0.5   green=0.5   blue=0.5
+
+
+************************
+This is clockwise rotation.
+Solid is rotated 1 times.
+This is clockwise rotation.
+Solid is rotated 1 times.
+This is clockwise rotation.
+Solid is rotated 1 times.
+This is clockwise rotation.
+Solid is rotated 1 times.
+This is clockwise rotation.
+Solid is rotated 1 times.
+This is clockwise rotation.
+Solid is rotated 1 times.
+This is clockwise rotation.
+Solid is rotated 1 times.
+This is clockwise rotation.
+Solid is rotated 1 times.
+Item #0 is 
+
+Solid [(-0.5,-0.5,0),(2.5,7.5,2.12)]
+face[0] is red=0.2   green=0.4   blue=0.6
+face[1] is red=0.2   green=0.4   blue=0.6
+face[2] is red=0.2   green=0.4   blue=0.6
+face[3] is red=0.2   green=0.4   blue=0.6
+face[4] is red=0.2   green=0.4   blue=0.6
+face[5] is red=0.2   green=0.4   blue=0.6
+
+
+Item #1 is 
+
+Solid [(-3,2,0),(-3,2,0)]
+face[0] is red=0.1   green=0.1   blue=0.1
+face[1] is red=0.2   green=0.2   blue=0.2
+face[2] is red=0.3   green=0.3   blue=0.3
+face[3] is red=0   green=0   blue=0
+face[4] is red=0.4   green=0.4   blue=0.4
+face[5] is red=0.5   green=0.5   blue=0.5
+
+
+Item #2 is 
+
+Solid [(-3,2,0),(-3,2,0)]
+face[0] is red=0.2   green=0.4   blue=0.6
+face[1] is red=0.2   green=0.4   blue=0.6
+face[2] is red=0.2   green=0.4   blue=0.6
+face[3] is red=0.2   green=0.4   blue=0.6
+face[4] is red=0.2   green=0.4   blue=0.6
+face[5] is red=0.2   green=0.4   blue=0.6
+
+
+Item #3 is 
+
+Solid [(-0.5,-0.5,0),(2.5,7.5,2.12)]
+face[0] is red=0.2   green=0.4   blue=0.6
+face[1] is red=0.2   green=0.4   blue=0.6
+face[2] is red=0.2   green=0.4   blue=0.6
+face[3] is red=0.2   green=0.4   blue=0.6
+face[4] is red=0.2   green=0.4   blue=0.6
+face[5] is red=0.2   green=0.4   blue=0.6
+
+
+Item #4 is 
+
+Solid [(0,0,0),(1,1,1)]
+face[0] is red=1   green=1   blue=1
+face[1] is red=1   green=1   blue=1
+face[2] is red=1   green=1   blue=1
+face[3] is red=1   green=1   blue=1
+face[4] is red=1   green=1   blue=1
+face[5] is red=1   green=1   blue=1
+
+
+Item #5 is 
+
+Solid [(-0.5,-0.5,0),(2.5,7.5,2.12)]
+face[0] is red=0.1   green=0.1   blue=0.1
+face[1] is red=0.2   green=0.2   blue=0.2
+face[2] is red=0.3   green=0.3   blue=0.3
+face[3] is red=0   green=0   blue=0
+face[4] is red=0.4   green=0.4   blue=0.4
+face[5] is red=0.5   green=0.5   blue=0.5
+
+
+Item #6 is 
+
+Solid [(0,0,0),(1,1,1)]
+face[0] is red=1   green=1   blue=1
+face[1] is red=1   green=1   blue=1
+face[2] is red=1   green=1   blue=1
+face[3] is red=1   green=1   blue=1
+face[4] is red=1   green=1   blue=1
+face[5] is red=1   green=1   blue=1
+
+
+Item #7 is 
+
+Solid [(-3,2,0),(5,5,2.12)]
+face[0] is red=0.2   green=0.2   blue=0.2
+face[1] is red=0.3   green=0.3   blue=0.3
+face[2] is red=0   green=0   blue=0
+face[3] is red=0.1   green=0.1   blue=0.1
+face[4] is red=0.4   green=0.4   blue=0.4
+face[5] is red=0.5   green=0.5   blue=0.5
+
+
+************************
+Attempts to find the intersection of solid 
+
+Solid [(-0.5,-0.5,0),(2.5,7.5,2.12)]
+face[0] is red=0.2   green=0.4   blue=0.6
+face[1] is red=0.2   green=0.4   blue=0.6
+face[2] is red=0.2   green=0.4   blue=0.6
+face[3] is red=0.2   green=0.4   blue=0.6
+face[4] is red=0.2   green=0.4   blue=0.6
+face[5] is red=0.2   green=0.4   blue=0.6
+
+and solid 
+
+Solid [(-0.5,-0.5,0),(2.5,7.5,2.12)]
+face[0] is red=0.1   green=0.1   blue=0.1
+face[1] is red=0.2   green=0.2   blue=0.2
+face[2] is red=0.3   green=0.3   blue=0.3
+face[3] is red=0   green=0   blue=0
+face[4] is red=0.4   green=0.4   blue=0.4
+face[5] is red=0.5   green=0.5   blue=0.5
+
+
+Attempts to find the intersection of solid 
+
+Solid [(-3,2,0),(-3,2,0)]
+face[0] is red=0.1   green=0.1   blue=0.1
+face[1] is red=0.2   green=0.2   blue=0.2
+face[2] is red=0.3   green=0.3   blue=0.3
+face[3] is red=0   green=0   blue=0
+face[4] is red=0.4   green=0.4   blue=0.4
+face[5] is red=0.5   green=0.5   blue=0.5
+
+and solid 
+
+Solid [(-0.5,-0.5,0),(2.5,7.5,2.12)]
+face[0] is red=0.1   green=0.1   blue=0.1
+face[1] is red=0.2   green=0.2   blue=0.2
+face[2] is red=0.3   green=0.3   blue=0.3
+face[3] is red=0   green=0   blue=0
+face[4] is red=0.4   green=0.4   blue=0.4
+face[5] is red=0.5   green=0.5   blue=0.5
+
+
+No intersection. White Solid [(0,0,0),(1,1,1)] is returned
+Attempts to find the intersection of solid 
+
+Solid [(-3,2,0),(-3,2,0)]
+face[0] is red=0.2   green=0.4   blue=0.6
+face[1] is red=0.2   green=0.4   blue=0.6
+face[2] is red=0.2   green=0.4   blue=0.6
+face[3] is red=0.2   green=0.4   blue=0.6
+face[4] is red=0.2   green=0.4   blue=0.6
+face[5] is red=0.2   green=0.4   blue=0.6
+
+and solid 
+
+Solid [(-0.5,-0.5,0),(2.5,7.5,2.12)]
+face[0] is red=0.1   green=0.1   blue=0.1
+face[1] is red=0.2   green=0.2   blue=0.2
+face[2] is red=0.3   green=0.3   blue=0.3
+face[3] is red=0   green=0   blue=0
+face[4] is red=0.4   green=0.4   blue=0.4
+face[5] is red=0.5   green=0.5   blue=0.5
+
+
+No intersection. White Solid [(0,0,0),(1,1,1)] is returned
+Attempts to find the intersection of solid 
+
+Solid [(-0.5,-0.5,0),(2.5,7.5,2.12)]
+face[0] is red=0.2   green=0.4   blue=0.6
+face[1] is red=0.2   green=0.4   blue=0.6
+face[2] is red=0.2   green=0.4   blue=0.6
+face[3] is red=0.2   green=0.4   blue=0.6
+face[4] is red=0.2   green=0.4   blue=0.6
+face[5] is red=0.2   green=0.4   blue=0.6
+
+and solid 
+
+Solid [(-0.5,-0.5,0),(2.5,7.5,2.12)]
+face[0] is red=0.1   green=0.1   blue=0.1
+face[1] is red=0.2   green=0.2   blue=0.2
+face[2] is red=0.3   green=0.3   blue=0.3
+face[3] is red=0   green=0   blue=0
+face[4] is red=0.4   green=0.4   blue=0.4
+face[5] is red=0.5   green=0.5   blue=0.5
+
+
+Attempts to find the intersection of solid 
+
+Solid [(0,0,0),(1,1,1)]
+face[0] is red=1   green=1   blue=1
+face[1] is red=1   green=1   blue=1
+face[2] is red=1   green=1   blue=1
+face[3] is red=1   green=1   blue=1
+face[4] is red=1   green=1   blue=1
+face[5] is red=1   green=1   blue=1
+
+and solid 
+
+Solid [(-0.5,-0.5,0),(2.5,7.5,2.12)]
+face[0] is red=0.1   green=0.1   blue=0.1
+face[1] is red=0.2   green=0.2   blue=0.2
+face[2] is red=0.3   green=0.3   blue=0.3
+face[3] is red=0   green=0   blue=0
+face[4] is red=0.4   green=0.4   blue=0.4
+face[5] is red=0.5   green=0.5   blue=0.5
+
+
+Attempts to find the intersection of solid 
+
+Solid [(-0.5,-0.5,0),(2.5,7.5,2.12)]
+face[0] is red=0.1   green=0.1   blue=0.1
+face[1] is red=0.2   green=0.2   blue=0.2
+face[2] is red=0.3   green=0.3   blue=0.3
+face[3] is red=0   green=0   blue=0
+face[4] is red=0.4   green=0.4   blue=0.4
+face[5] is red=0.5   green=0.5   blue=0.5
+
+and solid 
+
+Solid [(-0.5,-0.5,0),(2.5,7.5,2.12)]
+face[0] is red=0.1   green=0.1   blue=0.1
+face[1] is red=0.2   green=0.2   blue=0.2
+face[2] is red=0.3   green=0.3   blue=0.3
+face[3] is red=0   green=0   blue=0
+face[4] is red=0.4   green=0.4   blue=0.4
+face[5] is red=0.5   green=0.5   blue=0.5
+
+
+Attempts to find the intersection of solid 
+
+Solid [(0,0,0),(1,1,1)]
+face[0] is red=1   green=1   blue=1
+face[1] is red=1   green=1   blue=1
+face[2] is red=1   green=1   blue=1
+face[3] is red=1   green=1   blue=1
+face[4] is red=1   green=1   blue=1
+face[5] is red=1   green=1   blue=1
+
+and solid 
+
+Solid [(-0.5,-0.5,0),(2.5,7.5,2.12)]
+face[0] is red=0.1   green=0.1   blue=0.1
+face[1] is red=0.2   green=0.2   blue=0.2
+face[2] is red=0.3   green=0.3   blue=0.3
+face[3] is red=0   green=0   blue=0
+face[4] is red=0.4   green=0.4   blue=0.4
+face[5] is red=0.5   green=0.5   blue=0.5
+
+
+Attempts to find the intersection of solid 
+
+Solid [(-3,2,0),(5,5,2.12)]
+face[0] is red=0.2   green=0.2   blue=0.2
+face[1] is red=0.3   green=0.3   blue=0.3
+face[2] is red=0   green=0   blue=0
+face[3] is red=0.1   green=0.1   blue=0.1
+face[4] is red=0.4   green=0.4   blue=0.4
+face[5] is red=0.5   green=0.5   blue=0.5
+
+and solid 
+
+Solid [(-0.5,-0.5,0),(2.5,7.5,2.12)]
+face[0] is red=0.1   green=0.1   blue=0.1
+face[1] is red=0.2   green=0.2   blue=0.2
+face[2] is red=0.3   green=0.3   blue=0.3
+face[3] is red=0   green=0   blue=0
+face[4] is red=0.4   green=0.4   blue=0.4
+face[5] is red=0.5   green=0.5   blue=0.5
+
+
+Item #0 is 
+
+Solid [(-0.5,-0.5,0),(2.5,7.5,2.12)]
+face[0] is red=1   green=1   blue=1
+face[1] is red=1   green=1   blue=1
+face[2] is red=1   green=1   blue=1
+face[3] is red=1   green=1   blue=1
+face[4] is red=1   green=1   blue=1
+face[5] is red=1   green=1   blue=1
+
+
+Item #1 is 
+
+Solid [(0,0,0),(1,1,1)]
+face[0] is red=1   green=1   blue=1
+face[1] is red=1   green=1   blue=1
+face[2] is red=1   green=1   blue=1
+face[3] is red=1   green=1   blue=1
+face[4] is red=1   green=1   blue=1
+face[5] is red=1   green=1   blue=1
+
+
+Item #2 is 
+
+Solid [(0,0,0),(1,1,1)]
+face[0] is red=1   green=1   blue=1
+face[1] is red=1   green=1   blue=1
+face[2] is red=1   green=1   blue=1
+face[3] is red=1   green=1   blue=1
+face[4] is red=1   green=1   blue=1
+face[5] is red=1   green=1   blue=1
+
+
+Item #3 is 
+
+Solid [(-0.5,-0.5,0),(2.5,7.5,2.12)]
+face[0] is red=1   green=1   blue=1
+face[1] is red=1   green=1   blue=1
+face[2] is red=1   green=1   blue=1
+face[3] is red=1   green=1   blue=1
+face[4] is red=1   green=1   blue=1
+face[5] is red=1   green=1   blue=1
+
+
+Item #4 is 
+
+Solid [(0,0,0),(1,1,1)]
+face[0] is red=1   green=1   blue=1
+face[1] is red=1   green=1   blue=1
+face[2] is red=1   green=1   blue=1
+face[3] is red=1   green=1   blue=1
+face[4] is red=1   green=1   blue=1
+face[5] is red=1   green=1   blue=1
+
+
+Item #5 is 
+
+Solid [(-0.5,-0.5,0),(2.5,7.5,2.12)]
+face[0] is red=1   green=1   blue=1
+face[1] is red=1   green=1   blue=1
+face[2] is red=1   green=1   blue=1
+face[3] is red=1   green=1   blue=1
+face[4] is red=1   green=1   blue=1
+face[5] is red=1   green=1   blue=1
+
+
+Item #6 is 
+
+Solid [(0,0,0),(1,1,1)]
+face[0] is red=1   green=1   blue=1
+face[1] is red=1   green=1   blue=1
+face[2] is red=1   green=1   blue=1
+face[3] is red=1   green=1   blue=1
+face[4] is red=1   green=1   blue=1
+face[5] is red=1   green=1   blue=1
+
+
+Item #7 is 
+
+Solid [(-0.5,2,0),(2.5,5,2.12)]
+face[0] is red=1   green=1   blue=1
+face[1] is red=1   green=1   blue=1
+face[2] is red=1   green=1   blue=1
+face[3] is red=1   green=1   blue=1
+face[4] is red=1   green=1   blue=1
+face[5] is red=1   green=1   blue=1
+
+
