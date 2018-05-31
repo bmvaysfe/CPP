@@ -1,0 +1,41 @@
+Priority Queue for integers
+0 
+0 4 
+-5 0 4 
+-5 0 2 4 
+-5 -2 0 2 4 
+-5 -2 -2 0 2 4 
+-5 -3 -2 -2 0 2 4 
+-5 -3 -2 -2 0 1 2 4 
+-5 -3 -2 -2 0 1 2 3 4 
+Min is -5
+Max is 4
+-3 -2 -2 -1 0 1 2 3 
+-100 -3 -2 -2 -1 0 1 2 3 
+-100 -100 -3 -2 -2 -1 0 1 2 3 
+-100 -100 -3 -2 -2 -1 -1 0 1 2 3 
+
+
+
+Priority Queue for doubles
+-450.22 -123.45 0 2.5 2.75 3.14 3.14 
+Min is -450.22
+Max is 3.14
+-123.45 0 2.5 2.75 3.14 
+
+
+
+Priority Queue for Cards
+2D	 2C	 7C	 7D	 QC	 AS	 
+Min is 2D	
+
+Max is AS	
+
+First removed card is QC	
+
+Removed card is QC	
+
+Removed card is 7D	
+
+Removed card is 7C	
+
