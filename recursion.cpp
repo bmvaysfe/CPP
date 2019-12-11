@@ -90,7 +90,7 @@ void Hanoi (int n, char a, char b, char c)
 		cout << "move disk from tower " << a << " to " << b << endl;
 		}
 	else {
-			// first move all but last disk from tower a to tower c
+			// first move all but last disk from tower a to tower c via b
 		Hanoi (n-1, a, c, b);
 		
 			// then move one disk from a to b
@@ -276,6 +276,23 @@ int isPowerOf2(int num)
 int is_PowerOf2(int n)
 {
     return (n==1 || !(n & (n-1)));
+    //		return (n==1 || (n & (n-1))==0);	// Works in Java
+}
+
+
+
+//	06.19.19
+int isExactSquare2(int x)
+{
+	if(x<0) return 0;
+	return ceil(sqrt(x)) == floor(sqrt(x));
+}
+
+
+//	10.28.19
+int isExactCube(float n)
+{       
+    return ceil(cbrt(n)) == floor(cbrt(n));  // cbrt() stands for cubic root
 }
 
 
@@ -336,6 +353,7 @@ void test_binary()
 
 /*  
     Multiply by 2 without *
+    2<<(n-1) will do 2^n 
 */    
 int mult_by2(int a)
 {
@@ -434,6 +452,122 @@ void swap2(int a, int b)
 	a=a-b;
 }
 
+//	~x = -x -1  => -x = ~x+1
+//	x+1= -~x
+int add1(int n)
+{
+	return -~n;
+}
+
+
+
+//	Subtract 1 from a number n
+int sub1(int n)
+{
+    return  ~-n;
+}
+
+
+//	Returns 1 if odd, 0 if even
+int isOdd(int n)
+{
+	return n&1;
+}
+
+
+
+//	Turning on k-th bit of a number n
+//	Bit numeration starts from 1!
+int turnOnKthBit(int n, int k)
+{
+	return n | (1<<(k-1));
+}
+
+
+
+int turnOffKthBit(int n, int k)
+{
+	return n & ~(1<<(k-1));
+}
+
+
+int toggleKthBit(int n, int k)
+{
+	return n ^ (1<<(k-1));
+}
+
+
+int unsetRightMostBit(int n)
+{
+	return n & (n-1);
+}
+
+
+
+//	Find absolute value
+int findAbsoluteValue(int n)
+{
+	int mask = n>>31;
+	return (n+mask)^mask;
+}
+
+
+
+void ToLower()
+{
+    char ch;
+    
+    for(ch='A';ch<='Z';ch++)
+        cout<<(char)(ch|' ');
+    cout<<endl;
+}
+
+
+
+void ToUpper()
+{
+    char ch;
+    
+    for(ch='a';ch<='z';ch++)
+        cout<<(char)(ch&'_');
+    cout<<endl;
+}
+
+
+
+void InvertCase()
+{
+    
+    char ch;
+    
+    //  To lower
+    for(ch='A';ch<='Z';ch++)
+        cout<<(char)(ch^' ');
+    cout<<endl;    
+  
+    //  To Upper
+    for(ch='a';ch<='z';ch++)
+        cout<<(char)(ch^' ');
+        
+    cout<<endl;
+}
+
+
+
+void InvertCase2()
+{
+    char ch;
+    
+    //   To upper
+    for(ch='a';ch<'z';ch++)
+        cout<<(char)(ch+'A'-'a');
+    cout<<endl;
+    
+    //  To lower
+    for(ch='A';ch<'Z';ch++)
+        cout<<(char)(ch-'A'+'a');
+    cout<<endl;
+}
 //	END OF BITWISE OPS
 
 
@@ -686,6 +820,82 @@ int my_atoi(char *s)
     }
     return sum*sign;
 }
+
+
+//	10.7.19
+double my_atod(char *s)
+{
+    int metDot=0, metPlus=0, metMinus=0, f10=1, sign=1, sum1=0;
+    char DOT='.', PLUS='+', MINUS='-';
+    double ONE=1.0D, ZERO=0.0D, sum2=0, result=ZERO;
+    
+    if(!s || *s=='\0') return ZERO;
+    
+    while(*s) {
+        if(*s==DOT) ++metDot;
+        else if(*s == MINUS) {
+            ++metMinus;
+            sign=-1;
+        }
+        else if(*s == PLUS) ++metPlus;
+        else {
+            if(metMinus==2 || metPlus==2 || metDot ==2) return ZERO;
+            
+            if(metDot == 0) {
+                sum1 = *s - '0' + sum1*10;
+            }
+            else if(metDot ==1) {
+                sum2=*s-'0'+sum2*10;
+                f10*=10;
+            }
+        }
+        s++;
+    }
+    result = sum1*ONE+(sum2*ONE)/f10;
+    if(metMinus) {
+        result*=sign;
+    }
+    return result;
+}
+
+
+//	10.7.19
+double my_atod2(char *s)
+{
+    int metDot=0, metPlus=0, metMinus=0, f10=10, sign=1, sum1=0;
+    char DOT='.', PLUS='+', MINUS='-';
+    double ONE=1.0D, ZERO=0.0D, sum2=0, result=ZERO;
+    
+    if(!s || *s=='\0') return ZERO;
+    
+    while(*s) {
+        if(*s==DOT) ++metDot;
+        else if(*s == MINUS) {
+            ++metMinus;
+            sign=-1;
+        }
+        else if(*s == PLUS) ++metPlus;
+        else {
+            if(metMinus==2 || metPlus==2 || metDot ==2) return ZERO;
+            
+            if(metDot == 0) {
+                sum1 = *s - '0' + sum1*10;
+            }
+            else if(metDot ==1) {
+                sum2+= ((*s - '0')*ONE)/f10;
+                f10*=10;
+            }
+        }
+        s++;
+    }
+    result = sum1*ONE+sum2;
+    if(metMinus) {
+        result*=sign;
+    }
+    return result;
+}
+
+
 
 void test_my_atoi()
 {
@@ -1071,6 +1281,17 @@ int isSameSign(int x, int y)
 	return ((x^y)<0);
 }
 
+//	05.30.18
+long swap_bits(long int n, int i, int j)
+{
+	if( ((n>>i)&1)!=  ((n>>j)&1))
+   	{	
+    	n^=(1L<<i)|(1L<<j);
+   	}	
+   	return n;
+}
+
+
 
 //	End of String Library Functions
 
@@ -1109,6 +1330,7 @@ int main(int argc, char**argv)
 //    test_flip();    
 
 //    cout<<my_atoi("+159")<<"\t"<<atoi1("+159");
-	test_my_atoi();
+//	test_my_atoi();
+	InvertCase2();
     return 0;
 }
