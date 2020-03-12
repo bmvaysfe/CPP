@@ -100,7 +100,7 @@ class BSTree
 		int getHeight() const;  //  01.19.15
 		int isBalanced() const; //  01.19.15
 		void print_binary_tree_level_order() const; //  05.04.15
-		void print_tree_perimeter(); const//	10.22.15
+		void print_tree_perimeter() const;//	10.22.15
 
 	private:
 		TNode* root;
@@ -123,8 +123,8 @@ class BSTree
 		TNode* commonAncestorHelper(TNode *root, TNode *p, TNode *q) const; //  02.09.15
 		TNode* commonAncestor(TNode *root, TNode *p, TNode *q) const;   //  02.09.15
 		void print_binary_tree_level_order(TNode *) const; //  05.04.15
-		void _print_tree_perimeter();  const//	10.22.15
-		void print_leaves(TNode*); 	const //	10.22.15
+		void _print_tree_perimeter()  const;//	10.22.15
+		void print_leaves(TNode*) const; //	10.22.15
 };
 
 
