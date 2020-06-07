@@ -1274,12 +1274,18 @@ int add(int a, int b)
 }
 
 
-//	03.31.17
-//	 Returns 0 if same sign, 1 as different
-int isSameSign(int x, int y)
+
+//	06.04.2020
+//	0 is neither positive nor negative
+int isSameSign2(int x, int y)
 {
-	return ((x^y)<0);
+    // Since 0 has no sign, any number and 0 won't have same sign.
+    if(x==0 && y==0) return 0;
+    else if(x==0 || y==0) return 0;  
+    else if(areEqual(x,y)) return true;
+    return ((x^y)>0);
 }
+
 
 //	05.30.18
 long swap_bits(long int n, int i, int j)
