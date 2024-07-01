@@ -18,8 +18,8 @@
 #include<algorithm>
 
 using namespace std;
-
-//	RECURSION
+//	New form of scanf():  scanf("%[^\n]%*c", &s); - this reads entire line before \r\n 
+//	RECURSION.cpp
 
 //    Accenture 2007
 /*
@@ -183,6 +183,23 @@ void test_misc()
     printf("%f\n", a); // 0.000000
 }
 
+/*
+12.05.2020 from interviewbit.com
+
+
+x & (x-1) will clear the lowest set bit of x
+x & ~(x-1) extracts the lowest set bit of x (all others are clear). Pretty patterns when applied to a linear sequence.
+x & (x + (1 << n)) = x, with the run of set bits (possibly length 0) starting at bit n cleared.
+x & ~(x + (1 << n)) = the run of set bits (possibly length 0) in x, starting at bit n.
+x | (x + 1) = x with the lowest cleared bit set.
+x | ~(x + 1) = extracts the lowest cleared bit of x (all others are set).
+x | (x - (1 << n)) = x, with the run of cleared bits (possibly length 0) starting at bit n set.
+x | ~(x - (1 << n)) = the lowest run of cleared bits (possibly length 0) in x, starting at bit n are the only clear bits.
+
+
+
+
+*/
 //  Generate truth table in reverse order.
 /* On machines that have 8-bit bytes, a byte is conveniently represented as
    2 hexadecimal digits */ 
@@ -269,7 +286,7 @@ void bitwise_ops()
 }
 // #endif // @home  AAA
 int isPowerOf2(int num)
-{
+{	if(num<=0) return 0;
 	return (num>0) && ceil(log(num)/log(2))==floor(log(num)/log(2));
 }
 
@@ -297,10 +314,18 @@ int isExactCube(float n)
 
 
 
-//  Test for an overflow
-bool WillOverflow_GOOD(unsigned int x, int add) {
-  // This won't overflow because "x" can't be greater than UINT_MAX
+//  Test for an ADD overflow
+bool WillOverflow_GOOD( int x, int add) {
+  // This won't overflow because "x" can't be greater than INT_MAX
+  // Use UINT_MAX for unsigned
   return (INT_MAX - x) < add;
+}
+
+//	12.11.2020
+//	Test for Multiplication Overflow
+int isMultOverflow(int x, int y)
+{
+    return x>INT_MAX/y;
 }
 
 
@@ -370,6 +395,17 @@ int mult_by7(int a)
 	return b;
 }
 
+
+int mult_by_5(int n)
+{
+    return (n<<2)+n;
+}
+
+int mult_by_10(int n)
+{
+    return (n<<3)+(n<<1);
+}
+
 /* Remainder by 8 without % operator */
 int rem8(int x)
 {
@@ -432,6 +468,24 @@ void powersof_2()
     cout<<"log2("<<bil<<") = "<<p2<<endl;
 }
 
+
+
+/*
+
+
+        x & (x-1) will clear the lowest set bit of x
+        x & ~(x-1) extracts the lowest set bit of x (all others are clear). Pretty patterns when applied to a linear sequence.
+        x & (x + (1 << n)) = x, with the run of set bits (possibly length 0) starting at bit n cleared.
+        x & ~(x + (1 << n)) = the run of set bits (possibly length 0) in x, starting at bit n.
+        x | (x + 1) = x with the lowest cleared bit set.
+        x | ~(x + 1) = extracts the lowest cleared bit of x (all others are set).
+        x | (x - (1 << n)) = x, with the run of cleared bits (possibly length 0) starting at bit n set.
+        x | ~(x - (1 << n)) = the lowest run of cleared bits (possibly length 0) in x, starting at bit n are the only clear bits.
+
+
+
+
+*/
 
 //	Swap 2 ints without 3rd parameter
 //	Only swap technique is show in this method!
@@ -559,12 +613,12 @@ void InvertCase2()
     char ch;
     
     //   To upper
-    for(ch='a';ch<'z';ch++)
+    for(ch='a';ch<='z';ch++)
         cout<<(char)(ch+'A'-'a');
     cout<<endl;
     
     //  To lower
-    for(ch='A';ch<'Z';ch++)
+    for(ch='A';ch<='Z';ch++)
         cout<<(char)(ch-'A'+'a');
     cout<<endl;
 }
@@ -718,14 +772,14 @@ void test_static_func()
 //    cout<<static_func1()*static_func1()*static_func1()*static_func1()<<endl;
 }
 
-//  Euclid's Algorithm
+//  Euclid's Algorithm, O(n)
 int gcd(int a, int b) 
 { 
    return ( b == 0 ? a : gcd(b, a % b) ); 
 }
 
 /* Budd, "Data Structures in C++ using STL, p 55 */
-//  Euclid's Algorithm
+//  Euclid's Algorithm, O(n)
 int gcd1(int m, int n)
 {
     assert(n>0 && m>0);
@@ -821,82 +875,6 @@ int my_atoi(char *s)
     return sum*sign;
 }
 
-
-//	10.7.19
-double my_atod(char *s)
-{
-    int metDot=0, metPlus=0, metMinus=0, f10=1, sign=1, sum1=0;
-    char DOT='.', PLUS='+', MINUS='-';
-    double ONE=1.0D, ZERO=0.0D, sum2=0, result=ZERO;
-    
-    if(!s || *s=='\0') return ZERO;
-    
-    while(*s) {
-        if(*s==DOT) ++metDot;
-        else if(*s == MINUS) {
-            ++metMinus;
-            sign=-1;
-        }
-        else if(*s == PLUS) ++metPlus;
-        else {
-            if(metMinus==2 || metPlus==2 || metDot ==2) return ZERO;
-            
-            if(metDot == 0) {
-                sum1 = *s - '0' + sum1*10;
-            }
-            else if(metDot ==1) {
-                sum2=*s-'0'+sum2*10;
-                f10*=10;
-            }
-        }
-        s++;
-    }
-    result = sum1*ONE+(sum2*ONE)/f10;
-    if(metMinus) {
-        result*=sign;
-    }
-    return result;
-}
-
-
-//	10.7.19
-double my_atod2(char *s)
-{
-    int metDot=0, metPlus=0, metMinus=0, f10=10, sign=1, sum1=0;
-    char DOT='.', PLUS='+', MINUS='-';
-    double ONE=1.0D, ZERO=0.0D, sum2=0, result=ZERO;
-    
-    if(!s || *s=='\0') return ZERO;
-    
-    while(*s) {
-        if(*s==DOT) ++metDot;
-        else if(*s == MINUS) {
-            ++metMinus;
-            sign=-1;
-        }
-        else if(*s == PLUS) ++metPlus;
-        else {
-            if(metMinus==2 || metPlus==2 || metDot ==2) return ZERO;
-            
-            if(metDot == 0) {
-                sum1 = *s - '0' + sum1*10;
-            }
-            else if(metDot ==1) {
-                sum2+= ((*s - '0')*ONE)/f10;
-                f10*=10;
-            }
-        }
-        s++;
-    }
-    result = sum1*ONE+sum2;
-    if(metMinus) {
-        result*=sign;
-    }
-    return result;
-}
-
-
-
 void test_my_atoi()
 {
      #define NUM_TEST_CASES     3        
@@ -914,6 +892,40 @@ void test_my_atoi()
 	 }
 }
 
+
+
+
+double my_atod(char *s)
+{
+    int metDot=0, sign=1, sum=0, metPlus=0, metMinus=0;
+    char DOT='.', PLUS='+', MINUS='-';
+    double f10=0.1, ONE=1.0D, sum2=0.0, ZERO=0.0;
+    char *p=s;
+    
+    if(!s || s[0]=='\0') return ZERO;
+    
+    while(p && *p) {
+        if(*p == DOT) ++metDot;
+        else if(*p == MINUS) {
+			sign=-1;
+			++metMinus;
+		}
+        else if(*p == PLUS) {
+			sign=1;
+			++metPlus;
+		}
+		else if(metPlus==2||metMinus==2||metDot==2) return ZERO;
+        else if(!metDot) {
+            sum=*p-'0'+sum*10;
+        }
+        else if(metDot) {
+            sum2+=(*p-'0')*f10;
+            f10/=10;
+        }
+        ++p;
+    }   
+    return (sum*ONE+sum2)*sign;
+}
  
 /*
   12/02/09, eSpeed
@@ -1210,6 +1222,10 @@ int count_divisors(int n)
 int isPrime(int n)
 {
     int i=2;
+    
+    //	Sanity checking
+    if(n<=1) return 0;
+    
     while(i*i <=n) {
         if(n%i == 0) return 0;
         ++i;
@@ -1274,13 +1290,12 @@ int add(int a, int b)
 }
 
 
-
 //	06.04.2020
 //	0 is neither positive nor negative
 int isSameSign2(int x, int y)
 {
-    // Since 0 has no sign, any number and 0 won't have same sign.
-    if(x==0 && y==0) return 0;
+	// Since 0 has no sign, any number and 0 won't have same sign.
+	if(x==0 && y==0) return 0;
     else if(x==0 || y==0) return 0;  
     else if(areEqual(x,y)) return true;
     return ((x^y)>0);
@@ -1298,6 +1313,117 @@ long swap_bits(long int n, int i, int j)
 }
 
 
+
+//	11.02.2020
+int reverseDigits(int n)
+{
+    int sign=1;
+    
+    
+    vector<int> v;
+    if(n<=-1 && n>=9) return n;
+    if(n>=0 && n<=9) return n;
+    
+    if(n<0) {
+        sign=-1;
+        n*=-1;
+    }
+    int f10=0, j=0, sum=0;
+    int rem=0, found1stnon0=0, size=0;
+    for( f10=1000000000; f10>0; f10/=10) 
+    {
+        rem = n/f10;
+        if(rem!=0 ) {
+            ++found1stnon0;
+            v.push_back(rem);
+          //  cout<<rem<<" ";
+        }
+        n=n%f10;
+    }
+    size=v.size();
+ 
+    f10=1;
+    for(j=0;j<size;j++) {
+        sum+=v[j]*f10;
+        f10*=10;
+    }
+ 
+    cout<<"sum = "<<sum<<endl;
+    return sum*sign;
+}
+
+
+
+//	Leetcode.com #28
+int strstr2(string haystack, string needle)
+{
+	const char *pH=haystack.c_str();
+	const char *pN=needle.c_str();
+        
+	int lH=strlen(pH);
+	int lN=strlen(pN);
+        
+	if(!pH || !pN) return -1;
+        
+	if(lN>lH) return -1;
+    if(strcmp(pH, pN)==0) return 0;
+    if(pH[0]=='\0' || pN[0]=='\0') return 0;
+	int i=0;
+
+	for(i=0;i<=lH-lN;i++) {
+        if(strncmp(pH+i, pN, lN) ==0) return i;
+    }
+
+	return -1;
+
+  
+}
+
+/*
+	Given a sorted array nums, remove the duplicates in-place such that
+	each element appears only once and returns the new length.
+	Do not allocate extra space for another array, you must do this 
+	by modifying the input array in-place with O(1) extra memory.
+*/
+
+double myPow(double x, int n){
+
+    int i=0;
+    double one=1.0D, result=one;
+    if(n==0) return one;
+    
+    if(n>0) {
+        for(i=0;i<n;i++) {
+            result*=x;
+        }
+    }
+    else {
+        for(i=0;i!=n;i--) {
+            result/=x;
+        }
+    }
+    return result;
+} 
+
+
+//	04.10.2022
+bool isPalindrome(const char *src)
+{
+    int len=strlen(src), low=0, high=len-1;
+    
+    cout<<src<<" len="<<len<<endl;
+    if(!src || src[0]=='\0') return false;
+    
+    if(len==1) return true; // 1 letter string
+    //cout<<"len="<<len<<endl;
+    while(low<high) {
+        cout<<"looping..."<<endl;
+        if(src[low]!=src[high]) return false;
+        ++low;
+        --high;        
+    }
+    return true;
+}
 
 //	End of String Library Functions
 
