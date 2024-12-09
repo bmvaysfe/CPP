@@ -4,6 +4,8 @@
 #include<stack>
 #include<cstring>
 #include<cassert>
+#include<stack>
+#include<unordered_set> // for Hash Table C++ 11 implementation
 using namespace std;
 class Node {
 	public:
@@ -12,7 +14,7 @@ class Node {
 		int getData()const;
 		Node *getNext() const;
 		void setData(int x);
-		void setNext(Node *n);
+		void setNext(Node *np);
 
 	private:
 		int data;
@@ -40,6 +42,9 @@ class List {
     	void reverse();   // Added 09.18.11
         int isPalindrome(); // Start 06.27.13	
         void clear();
+        void reverse_range(int,int); // 08.05.24
+        void reverse_range2(int start,int end) ; // 09.10.24
+        void remove_duplicates(); // 12.08.24
 	private:
 		Node *front;
 		Node *rear;
@@ -48,6 +53,7 @@ class List {
 		void print_rec(Node *)const;  // Added 07.21.10
 		void reverse(Node **);    // Added 09.18.11
 		void reverse_recursively(Node*p); //	Added 02.16.17
+		void reverse2(Node**, Node**); // 09.10.24
 };
 
 
@@ -104,12 +110,14 @@ void test_palindrome_int()
 int main()
 {
      int i, mthFromEnd=3, count=0, cntr=0;
-     List theList;
+     List theList, testList;
     
-     for(i=0;i<11;i++)
+     for(i=0;i<11;i++) {	 
          theList.insert(i);
+         testList.insert(i);
+     }
      theList.print();   
-     
+#if 0 // BV 05.28.24     
      //	find 3rd element from back
      Node *mth=theList.getMthFromRear(mthFromEnd);
      cout<<"Element #"<<mthFromEnd<<" from end is: "<<mth->getData()<<endl;
@@ -146,10 +154,12 @@ int main()
      cout<<"\n\nTest Print"<<endl;
      theList.print_rec();
      cout<<endl;
-    
+ 
 //     test_palindrome();
-
-     cout<<"************************"<<endl;
+	cout<<"\nReversed List"<<endl;
+    theList.reverse();
+    theList.print_rec();
+    cout<<"\n************************"<<endl;
 
 	count=0;
 	
@@ -161,9 +171,29 @@ int main()
 		T1.next();
 	}
      
-     
-     
-     return 0;                   
+    //	Testing reverse_range()
+	testList.reverse_range(-1, 4);
+    testList.reverse_range(1, 400); 
+    testList.reverse_range(2, 5);
+    cout<<"The testList after reverse_range()"<<endl;
+    testList.print();
+   
+    cout<<"The testList after reverse_range2()"<<endl;
+    testList.reverse_range2(2, 5);
+    testList.print();
+ #endif      
+    // Test List::remove_duplicates()  12.08.24
+    int data[] = {6172,-1,4,7,123,131,117,260, 8448, 260};
+    
+    for(i=0; i< sizeof(data)/sizeof(data[0]);i++) {
+    	testList.insert(data[i]);
+	}
+	cout<<"Test list"<<endl;
+    testList.print();
+    
+    testList.remove_duplicates();
+    testList.print();
+    return 0;                   
 }
 
 
@@ -199,7 +229,7 @@ List::List()
     rear = 0;
 }
 
-//	#if 0
+
 List::List(const List&myList)
 {
 	if(!myList.isEmpty()) {
@@ -237,7 +267,7 @@ List & List::operator=(const List&myList)
 	}
 	return *this;
 }
-// #endif
+
 
 int List::isEmpty() const
 {
@@ -439,8 +469,8 @@ void List::reverse()    // Added 09.18.11
 //    Node *head=front;
     rear=front;
     if(!isEmpty())
-        reverse(&front);  
-    //    reverse_recursively(front);
+   //     reverse(&front);  
+        reverse_recursively(front);	// BV test 05.28.24
     cout<<"List::reverse(): rear->getData()="<<rear->getData()<<endl;
     cout<<"List::reverse(): front->getData()="<<front->getData()<<endl;
 //    front=head;
@@ -466,14 +496,14 @@ void List::reverse(Node **head)    // Added 09.18.11
 //	02.16.17
 void List::reverse_recursively(Node*p)
 {
-    if(p->getNext()==NULL) {
+    if(p->getNext()==0) {
         front=p;
         return;
     }
     reverse_recursively(p->getNext());
     Node *q=p->getNext();
     q->setNext(p);
-    p->setNext(NULL);
+    p->setNext(0);
 }    
 
 
@@ -502,6 +532,154 @@ int List::isPalindrome()
 	return 1;
 }
 
+//	Reverse list in range, start and end numeration given.
+//	Numeration starts from 0 which is the head of the list
+//  1st version - using stack as an external storage to prove the concept.
+void List::reverse_range(int start,int end) // 08.05.24
+{
+	int size = count();
+	if(start<0 || end > size -1 || isEmpty()) {
+		cout<< "Range ERROR: list has "<< size<<" element(s), start = "<<start<<" and end = "<<end<<endl;
+		return;
+	}
+	
+	stack<int>si;
+	Node *startNode =0;
+	Node *endNode =0;
+	Node *restOfListHead = 0;
+	Node *cur = front;
+	int i=0;
+	
+	while(i<start) {
+		cur = cur->getNext();
+		++i;
+	}
+	startNode = cur;  // Mark start of list
+	
+	while(i<end) {
+		si.push(cur->getData());
+		cur = cur->getNext();
+		++i;
+	}
+	
+	cur= startNode;  // reset current node
+	while(!si.empty()) {
+		cur->setData(si.top());
+		si.pop();
+		cur = cur->getNext();	
+	}
+}
+
+
+//	Reverse list in range, start and end numeration given.
+//	Numeration starts from 0 which is the head of the list
+void List::reverse_range2(int start,int end) // 09.10.24
+{
+	int size = count();
+	if(start<0 || end > size -1 || isEmpty()) {
+		cout<< "Range ERROR: list has "<< size<<" element(s), start = "<<start<<" and end = "<<end<<endl;
+		return;
+	}
+	
+	stack<int>si;
+	Node *startNode =0;
+	Node *endNode =0;
+	Node *restOfListHead = 0;
+	Node *cur = front;
+	int i=0;
+	Node *old=front;
+	Node *old2;
+	while(i<start) {
+		old = cur;
+		cur = cur->getNext();
+		++i;
+	}
+	startNode = cur;  // Mark start of list segment to reverse
+
+	while(i<end) {
+		old2=cur;
+		cur = cur->getNext();
+		++i;
+	}
+	endNode = cur;//->getNext();  // 1st node after the last node to be reversed.
+	restOfListHead = cur->getNext();
+	endNode->setNext(0); // terminate list, restore later
+
+	// Reverse nodes
+	reverse(&startNode);
+	
+	old->setNext(old2);
+	Node *last=0;
+	cur = front;
+	while(cur) {
+		last=cur;
+		cur=cur->getNext();
+	}
+	last->setNext(restOfListHead);
+	//	Reset rear node
+	cur = restOfListHead;
+	while(cur) {
+		last=cur;
+		cur = cur->getNext();
+	}
+	rear=last;
+	cout<<"REAR = "<<rear->getData()<<endl;
+}
+
+
+
+void List::reverse2(Node**head, Node **tail) // 09.10.24
+{
+	Node *temp1=*head;
+	Node *temp2=0;
+	Node *temp3=0;		
+	
+	while(temp1 != *tail) {
+		*head=temp1;
+		temp2=temp1->getNext();
+		temp1->setNext(temp3);
+		temp3=temp1;
+		temp1=temp2;
+	}
+}
+
+
+
+void List::remove_duplicates() // 12.08.24   O(n)
+ {
+ 	unordered_set<int> ht;
+ 	Node *prev = 0;
+ 	Node *current = front;
+ 	
+ 	if(isEmpty()) {
+ 		cout<<"List is empty! No duplicates to remove."<<endl;
+ 		return;
+	}
+	
+	while(current) {
+		if(ht.find(current->getData()) == ht.end())  // Value is NOT in hash table
+		{
+			ht.insert(current->getData());
+			prev = current;
+			current = current->getNext();
+		}
+		else {  // Found duplicate
+			Node * next = current->getNext();
+			delete current;
+			if(next) {
+				prev->setNext(next); // point to next node after duplicate is removed.
+				current = next;
+			} 
+			else {
+				current = 0; // End of list
+			}
+		}
+	}
+	rear = prev;
+	rear->setNext(0);
+//	cout<<"Rear value is "<<rear->getData()<<endl;
+	ht.clear();
+ }
 
 //	template <class Type>
 int ListIterator::operator()() const
