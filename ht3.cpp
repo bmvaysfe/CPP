@@ -152,7 +152,7 @@ void parse_line(vector<string>&vs, string input, string dlmtr)
 /*
 	 Write me a program that accepts a block of text (English words), 
 	 and outputs the groups of words that are anagrams of each other. 
-	 For example, ìaptî, ìtapî and ìpatî are anagrams of each other.
+	 For example, ‚Äúapt‚Äù, ‚Äútap‚Äù and ‚Äúpat‚Äù are anagrams of each other.
 */
 
 /*
@@ -331,18 +331,58 @@ void removeDuplicatesFromVector()
 }
 
 
+//	08.17.26
+//	Find numbers in array and their indices that add to a given sum.
+void hasPairIndexWithSum(const vector<int>data, int sum)
+{
+	unordered_map<int,int>comp; // complements
+	int i=0; // index of current element
+	const int ComplementIndex = -1;
+	pair<int,int>tmp, *tmp2;
+	for(int value:data) {
+		auto RC = comp.find(value);
+		if(RC == comp.end()) { // Value is NOT found
+			pair<int,int> tmp = make_pair(value,i);
+			comp.insert(tmp);
+		
+			//	Fill complement value - if it exists, 
+			//	it will be encountered later during iteration.
+			//	Index of complement is -1 to distinguish from values inserted before. 
+			pair<int,int> tmp2 = make_pair(sum - value,ComplementIndex);
+			comp.insert(tmp2);
+		}	
+		else { // Found complement entry which is = value at index i
+		//	Retrieve sum - value at this point
+			auto tmp3 = comp.find(sum-value);
+			cout<<"Found AAA value = "<<tmp3->first<<" at position "<<tmp3->second<<endl;
+			cout<<"Found BBB value = "<<value<<" at position "<<i<<endl<<endl;
+		}
+		++i; // increment index, go to next element
+	}
+}
+
 int main(int argc, char**argv)
 {
-
+#if 0	
 	string src = "abd def pat tap apt dab bad fed efd deaf fead";  // test string
 	printAnagrams(src);
 	
-#if 0	
+
 	int a[]={1,2,3,4,5,6};
 	int sum=7;
 	cout<<"\n\nPrinting pairs that sum to "<<sum<<endl;
 	printPairs(a, sizeof(a)/sizeof(a[0]), sum);   
-#endif	
+	
 //	removeDuplicatesFromVector();
+#endif
+	int a[]={1,2,3,4,5,6};
+	int sum=7, size = sizeof(a)/sizeof(a[0]);
+	int i=0;
+	vector<int>data;
+	for(;i<size;++i)
+		data.push_back(a[i]);
+
+	hasPairIndexWithSum(data, sum);
+	return 0;
 	return 0;
 }
