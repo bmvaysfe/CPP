@@ -338,7 +338,7 @@ void hasPairIndexWithSum(const vector<int>data, int sum)
 	unordered_map<int,int>comp; // complements
 	int i=0; // index of current element
 	const int ComplementIndex = -1;
-	pair<int,int>tmp, *tmp2;
+	pair<int,int>tmp, tmp2;
 	for(int value:data) {
 		auto RC = comp.find(value);
 		if(RC == comp.end()) { // Value is NOT found
