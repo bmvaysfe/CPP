@@ -1389,6 +1389,54 @@ void convert16(int n)
 }
 
 
+
+/*	07.05.26
+	Compute the combination n!/(n!*(n-r)!)
+*/
+long long int compute_combination(long long int n, long long int r)
+{
+	long long int d=n-r, result=1, i=0,low=0,high=0, start=1;
+	if(r==0 || r==n) return 1;
+	
+	assert(n>=r);
+	if(r>d) {
+		low = r;
+		high=d;
+	}
+	else {
+		high = r;
+		low =d;
+	}
+	
+	start = high+1;
+	for(i=start;i<=n;++i)
+		result*=i;
+		
+	for(i=low;i>1;--i)
+		result/=i;
+	return result;
+}
+
+//	08.25.26
+// Maximum subarray sum
+void KadaneAlgoExample()
+{
+    int arr[] = {-2,1,-3,4,-1,2,1,-5,4};
+
+    int sum=0,maxSum=arr[0], i=0;
+    int size = sizeof(arr)/sizeof(arr[0]);
+
+    for(i=0;i<size;i++) {
+        //    sum = max(arr[i], sum+arr[i]);
+          	sum = arr[i]>(sum+arr[i])?arr[i]:(sum+arr[i]);  
+            
+        //    maxSum = max(sum, maxSum);
+			maxSum = sum>maxSum?sum:maxSum;
+    }    
+    printf("maxSum = %d\n", maxSum);
+}
+
+
 int main(int argc, char**argv)
 {
 #if 0	
@@ -1397,9 +1445,10 @@ int main(int argc, char**argv)
 	convert8(9);
 	puts("\n");
 	convert16(16);
-#endif
-
 	test_Hanoi();
 	test_fix_array();
+	printf("(16!/(7!*9!) = %lli\n",compute_combination(16,7));
+#endif		
+	KadaneAlgoExample();
     return 0;
 }
