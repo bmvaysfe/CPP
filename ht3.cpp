@@ -15,87 +15,11 @@
 #include<set>
 #include<map>
 #include<cstdio>
-
+#include<utility>  // for std::pair
 #include<unordered_set> // for Hash Table C++ 11 implementation
+#include<unordered_map> // for unordered_map C++ 11 implementation
+#include<typeinfo>
 using namespace std;
-
-void HashTableIteration_Buckets()
-{
-	std::unordered_set<std::string> myset =
-  {"Mercury","Venus","Earth","Mars","Jupiter","Saturn","Uranus","Neptune"};
-
-  std::cout << "myset contains:";
-  for ( auto it = myset.begin(); it != myset.end(); ++it )
-    std::cout << " " << *it;
-  std::cout << std::endl;
-
-  std::cout << "myset's buckets contain:\n";
-  for ( unsigned i = 0; i < myset.bucket_count(); ++i) {
-    std::cout << "bucket #" << i << " contains:";
-    for ( auto local_it = myset.begin(i); local_it!= myset.end(i); ++local_it )
-      std::cout << " " << *local_it;
-    std::cout << std::endl;
-  }
-}
-
-
-
-void a_not_b_b_not_a(int *a, int size_of_a, int *b, int size_of_b)
-{
-	int i=0;
-	
-	unordered_set<int> ht_a;  // Hash table of elements of array a
-	unordered_set<int> ht_b;  // Hash table of elements of array b
-	
-	// 1. Put elements of array a in hash table ht_a
-	for(i=0;i<size_of_a;i++) {
-		ht_a.insert(a[i]);
-	}
-	
-	// 2. Put elements of array b in hash table ht_b
-	for(i=0;i<size_of_b;i++) {
-		ht_b.insert(b[i]);
-	}
-	
-	vector<int> a_not_b;
-	
-	//	3. What elements are in a and not in b?
-	for(i=0; i<size_of_a; i++) {
-		if(ht_b.find(a[i])== ht_b.end())  // Element a[i] is not in array b
-			a_not_b.push_back(a[i]);
-	}
-	
-	//	4. Print a_not_b - elements that are in a and not in b
-	if(!a_not_b.empty()) {
-		cout<<"a_not_b is not empty and has "<<a_not_b.size()<<" items"<<endl;
-		// print content here
-		
-		for(i=0;i<a_not_b.size();i++) 
-			cout<<a_not_b[i]<<" ";
-		cout<<"\n\n***\n\n"<<endl;
-	}
-	
-	vector<int> b_not_a;
-	//	5. What elements are in b and not in a?
-	for(i=0; i<size_of_b; i++) {
-		if(ht_a.find(b[i])== ht_a.end())  // Element b[i] is not in array a
-			b_not_a.push_back(b[i]);
-	}
-	
-	
-	//	6. Print b_not_a - elements that are in b and not in a
-	if(!b_not_a.empty()) {
-		cout<<"b_not_a is not empty and has "<<b_not_a.size()<<" items"<<endl;
-		// print content here
-		
-		for(i=0;i<b_not_a.size();i++) 
-			cout<<b_not_a[i]<<" ";
-		cout<<"\n\n***\n\n"<<endl;
-	}
-}
-
-
-
 
 // O(n)
 bool HasPairWithSum(const vector<int>data, int sum)
@@ -152,16 +76,15 @@ void parse_line(vector<string>&vs, string input, string dlmtr)
 /*
 	 Write me a program that accepts a block of text (English words), 
 	 and outputs the groups of words that are anagrams of each other. 
-	 For example, ‚Äúapt‚Äù, ‚Äútap‚Äù and ‚Äúpat‚Äù are anagrams of each other.
+	 For example, ìaptî, ìtapî and ìpatî are anagrams of each other.
 */
 
 /*
 	My assumptions are that block of text is a line read from a file
 	or stdin. Words are separated by spaces, all words are lower case 
 	for simplicity.
-	
-	If line has n words in it, total complexity will be O(nlog(n)).
 */
+//	In printAnagram() the retrieval time from the map is O(log(n)).
 void printAnagrams(string src)
 {
 	string SPACE = " ";
@@ -169,13 +92,14 @@ void printAnagrams(string src)
 	vector<string> vs;
 	
 	parse_line(vs, src, SPACE);
-	cout<<src<<endl;
-	
+	cout<<__FUNCTION__<<"()"<<endl;
+	cout<<"Version with Hash Table and Map\n"<<endl;
+	cout<<"Source string: "<<src<<endl;
 	vector<string>sortedAns;
 	
 	unordered_set<string> sortedKeys;
 	map<string, string> sortedAnagrams;
-
+	
 	string sortedKey;
 	int i=0;
 	for(i=0;i<vs.size();i++) {
@@ -196,7 +120,6 @@ void printAnagrams(string src)
 		else {
 			// Update entry in map
 			// Entry found, update list of anagrams for sorted key by appending original value to value string
-		#if 0
 			map<string, string>::iterator m_it;
 			m_it = sortedAnagrams.find(sortedKey);
 			pair<string,string> entry = *m_it;
@@ -205,23 +128,21 @@ void printAnagrams(string src)
 			tmpValue.append(" ");
 			tmpValue.append(vs[i]);
 		
-			//	 remove old value, insert an updated 
+			//	 remove old value, insert aupdated 
 			sortedAnagrams.erase(m_it);
 			
 			pair<string, string> updatedEntry(sortedKey, tmpValue);
 		//	entry.second.assign(tmpValue);
 			sortedAnagrams.insert(updatedEntry);
 		//	sortedAnagrams.insert(pair<string, string>(sortedKey, tmpValue));
-		#endif
-			sortedAnagrams[sortedKey]+=SPACE+vs[i];  //	update entry
-			
+		
 		}		
 	} // end for
 	
 	
 	//	traverse the updated map
 	map<string, string>::iterator m_it2 = sortedAnagrams.begin();
-	 
+	cout<<"\nResulting Map"<<endl;  
     while(m_it2!=sortedAnagrams.end())
     {    
         cout<<m_it2->second<<endl;    
@@ -257,42 +178,8 @@ void printPairs(int *a, int size, int sum)
 }
 
 
-//	O(n) - no external storage
-void removeDuplicates()
-{
 
-	vector<int> v={1,1,1,2,3,5,-1, 0, 0, -2, 0, -5, 5};
-	cout<<"Vector has "<<v.size()<<" items."<<endl;
-   	unordered_set<int> ht;
-   
-   int i=0;
-   auto it=v.begin();
-   while(i<v.size()) {
-       auto it=v.begin();
-       // Insert item im hash table
-       if(ht.find( *(it+i)) == ht.end()) {
-           ht.insert(*(it+i));
-         //  ++i;
-       }
-       else {
-           cout<<"Duplicate found "<<*(it+i)<<endl;
-           // Remove duplicate here
-           v.erase(it+i);
-           --i;
-       }
-       if(i<0) { 
-           i=-1;
-       }
-       ++i;
-   }
-   cout<<"AAA Vector has "<<v.size()<<" items."<<endl;
-   cout<<"Here is cleaned vector"<<endl;
-   for(i=0;i<v.size();++i)
-        cout<<v[i]<<" ";
-    cout<<"\n\nDone"<<endl;
-}    
-
-// O(n)
+//	O(n)
 void removeDuplicatesFromVector()
 {
 	vector<int>v = {0,1,-1,3, 0, 12, 3, -1, 131, 260, 6172, 1};
@@ -303,7 +190,7 @@ void removeDuplicatesFromVector()
 	auto end=v.end();
 	
 	while(it!=end) {
-		// If item is not in hash table, insert it
+		// item is not in hash table, insert it
 		if(ht.find(*it)==ht.end())  {
 			ht.insert(*it);
 			q.push(*it);
@@ -330,6 +217,142 @@ void removeDuplicatesFromVector()
 	cout<<"\nDone"<<endl;
 }
 
+//  03.25.26
+//	This function does the same work as printAnagrams(). The only difference is unordered_map is used here
+//	to make the retrieval time O(1). In printAnagram() the retrieval time from the map is O(log(n)).
+void printAnagrams2(string src)
+{
+	string SPACE = " ";
+	string tmpString, tmpValue;
+	vector<string> vs;
+	
+	parse_line(vs, src, SPACE);
+	cout<<src<<endl;
+	
+	vector<string>sortedAns;
+	
+	unordered_set<string> sortedKeys;
+	unordered_map<string, string> sortedAnagrams;
+	
+	string sortedKey;
+	int i=0;
+	for(i=0;i<vs.size();i++) {
+		sortedKey.assign(vs[i]);  // assign original value
+		sort(sortedKey.begin(), sortedKey.end());  // sort original value, it will be the key in hashtable and map.
+	
+		// Insert sorted key into hash table if entry is not present
+		if(sortedKeys.find(sortedKey)==sortedKeys.end()) { 
+			sortedKeys.insert(sortedKey);  // insert into hash table
+			
+			// insert into map
+			tmpString.assign(vs[i]); // store original value								
+			sortedAnagrams[sortedKey]= tmpString;
+			tmpString.clear();
+		}
+		else {
+			// Update entry in map
+			// Entry found, update list of anagrams for sorted key by appending original value to value string
+		
+			tmpValue = sortedAnagrams[sortedKey];
+			tmpValue.append(" ");
+			tmpValue.append(vs[i]);
+			
+			//	 remove old value, insert aupdated 
+			sortedAnagrams[sortedKey] = tmpValue;
+			tmpValue.clear();				
+		}		
+	} // end for
+	
+
+	//	traverse the updated map
+	unordered_map<string, string>::iterator m_it2 = sortedAnagrams.begin();
+	 
+    while(m_it2!=sortedAnagrams.end())
+    {    
+        cout<<m_it2->second<<endl;    
+        ++m_it2;
+    } 
+}
+
+//	04.01.26
+//	Version with Hash Map using unordered_map container.
+//	The retrieval time from hash map is O(1)
+void printAnagrams3(string src)
+{
+	string SPACE = " ";
+	string tmpString, tmpValue;
+	vector<string> vs;
+	
+	parse_line(vs, src, SPACE);
+	cout<<"\n\n"<<__FUNCTION__<<"()"<<endl;
+	cout<<"Version with Hash Map using unordered_map container\n"<<endl;
+	cout<<"Source string: "<<src<<endl;
+	
+	vector<string>sortedAns;
+	
+	unordered_set<string> sortedKeys;
+	unordered_map<string, string> sortedAnagrams;
+	
+	string sortedKey;
+	int i=0;
+	for(i=0;i<vs.size();i++) {
+		sortedKey.assign(vs[i]);  // assign original value
+		sort(sortedKey.begin(), sortedKey.end());  // sort original value, it will be the key in hashtable and map.
+		
+		tmpValue = sortedAnagrams[sortedKey];
+		tmpValue.append(" ");
+		tmpValue.append(vs[i]);
+			
+		//	 Append a value
+		sortedAnagrams[sortedKey] = tmpValue;  // Possibly make it shorter?
+		tmpValue.clear();				
+		
+	}
+	
+	//	traverse the updated map
+	unordered_map<string, string>::iterator m_it2 = sortedAnagrams.begin();
+	cout<<"\nResulting Hash Map"<<endl; 
+    while(m_it2!=sortedAnagrams.end())
+    {    
+        cout<<m_it2->second<<endl;    
+        ++m_it2;
+    } 
+}
+
+//	Given 2 strings, return common characters in both.
+void get_common_characters_from_2_strings(string A, string B)
+{
+	string both;
+	unordered_set<char> htc;
+	int i=0;
+	int length_A=A.length();
+	int length_B=B.length();
+	
+	if(length_A ==0 || length_B==0) {
+		cout<<"Both strings ["<<A<<"] and B["<<B<<"] have NO common characters."<<endl;
+		return;
+	}		
+	//	Insert characters of string A into hash table
+	while(i<length_A) {
+		htc.insert(A[i]);
+		++i;
+	}
+	
+	//	Traverse B string and check hash table content: if character is there, add it to string both.
+	i=0;
+	while(i<length_B) {
+		if(htc.find(B[i])!=htc.end()) {
+			both+=B[i];
+		}
+		++i;
+	}
+	if(both.length()==0) // empty string
+		cout<<"Both strings ["<<A<<"] and B["<<B<<"] have NO common characters."<<endl;
+	else
+		cout<<"Both strings ["<<A<<"] and B["<<B<<"] have common characters: "<<both<<endl;
+}
+
+
 
 //	08.17.26
 //	Find numbers in array and their indices that add to a given sum.
@@ -338,7 +361,7 @@ void hasPairIndexWithSum(const vector<int>data, int sum)
 	unordered_map<int,int>comp; // complements
 	int i=0; // index of current element
 	const int ComplementIndex = -1;
-	pair<int,int>tmp, tmp2;
+
 	for(int value:data) {
 		auto RC = comp.find(value);
 		if(RC == comp.end()) { // Value is NOT found
@@ -361,20 +384,27 @@ void hasPairIndexWithSum(const vector<int>data, int sum)
 	}
 }
 
+
 int main(int argc, char**argv)
 {
-#if 0	
+#if 0
 	string src = "abd def pat tap apt dab bad fed efd deaf fead";  // test string
 	printAnagrams(src);
-	
+	printAnagrams3(src);
 
 	int a[]={1,2,3,4,5,6};
 	int sum=7;
 	cout<<"\n\nPrinting pairs that sum to "<<sum<<endl;
 	printPairs(a, sizeof(a)/sizeof(a[0]), sum);   
-	
-//	removeDuplicatesFromVector();
+
+	removeDuplicatesFromVector();
+		
+	string A="abcdef", B="efgha", AA="", BB="asdfs", A2="1234", B2="xcvb";
+	get_common_characters_from_2_strings(A,B);
+	get_common_characters_from_2_strings(AA,BB);
+	get_common_characters_from_2_strings(A2,B2);
 #endif
+
 	int a[]={1,2,3,4,5,6};
 	int sum=7, size = sizeof(a)/sizeof(a[0]);
 	int i=0;
@@ -383,6 +413,5 @@ int main(int argc, char**argv)
 		data.push_back(a[i]);
 
 	hasPairIndexWithSum(data, sum);
-	return 0;
 	return 0;
 }
