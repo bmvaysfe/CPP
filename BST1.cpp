@@ -6,6 +6,8 @@
 #include<cmath>
 #include<stack>
 #include<queue>
+#include<deque>
+#include<vector>
 using namespace std;
 
 class TNode
@@ -100,7 +102,10 @@ class BSTree
 		int getHeight() const;  //  01.19.15
 		int isBalanced() const; //  01.19.15
 		void print_binary_tree_level_order() const; //  05.04.15
+		void print_binary_tree_level_order2() const; //  08.20.26
 		void print_tree_perimeter() const;//	10.22.15
+		void Print_Leaves() const;  // 03.11.20
+		void invert_Tree();  // 05.28.26
 
 	private:
 		TNode* root;
@@ -123,8 +128,9 @@ class BSTree
 		TNode* commonAncestorHelper(TNode *root, TNode *p, TNode *q) const; //  02.09.15
 		TNode* commonAncestor(TNode *root, TNode *p, TNode *q) const;   //  02.09.15
 		void print_binary_tree_level_order(TNode *) const; //  05.04.15
+		void print_binary_tree_level_order2(TNode *t) const ;//  08.20.26
 		void _print_tree_perimeter()  const;//	10.22.15
-		void print_leaves(TNode*) const; //	10.22.15
+		void print_leaves(TNode*) 	const;//	10.22.15
 };
 
 
@@ -138,7 +144,8 @@ BSTree::BSTree(const BSTree& tree)
 	}
 
 	queue<TNode*>q;
-	q.push(tree.root);
+	if(root)
+		q.push(tree.root);
 	
 	while(!q.empty()) {
 		TNode *current = q.front();
@@ -182,55 +189,6 @@ BSTree& BSTree::operator=(const BSTree& tree)
 	return *this;
 }
 
-#if 0
-
-//	Assignment operator
-BSTree& BSTree::operator=(const BSTree& tree)
-{
-	//	what if tree is empty?
-//	bool AhasLeft=false, AhasRight=false;
-	if(this != &tree) {
-		destroy(root);
-		
-		queue<TNode*>qA;
-		queue<TNode*>qB;
-		TNode *currentA = 0;
-		TNode *currentB = 0;
-		
-		//	Create tree here.
-			if(isEmpty()) {
-				makeRoot((tree.root)->getData());
-				qB.push(root);
-			}
-		qA.push(tree.root);
-		
-		//	Traverse tree and insert
-		while(!qA.empty()) {
-			currentA = qA.front();
-			currentB = qB.front();
-			
-				
-			if(currentA->getLeft()) {
-			//	AhasLeft=true;
-				qA.push(currentA->getLeft());
-				insertLeft(currentB,currentA->getData());
-				qB.push(currentB->getLeft());
-			}
-			if(currentA->getRight())	{	
-				qA.push(currentA->getRight());
-			//	AhasRight=true;
-				insertRight(currentB,currentA->getData());
-				qB.push(currentB->getRight());
-			}	
-			
-			qA.pop();
-			qB.pop();		
-		}	
-	}
-	return *this;
-}	
-
-#endif
 
 
 BSTree::~BSTree()
@@ -407,6 +365,7 @@ void BSTree::destroy(TNode* t)
 		destroy(t->getLeft());
 		destroy(t->getRight());
 		delete t;
+		t=0;
 	}
 }
 
@@ -669,30 +628,60 @@ void BSTree::print_binary_tree_level_order() const //  05.04.15
 void BSTree::print_binary_tree_level_order(TNode *t) const //  05.04.15
 {
     if(!t) return;
-    
+    cout<<endl<<__FUNCTION__<<"()"<<endl;
     queue<TNode*>q;
     
     q.push(t);
-    int count=q.size();
+    int size=0, i=0;
     while(!q.empty()) {
-        TNode *current = q.front();
-        cout<<current->getData()<<" ";
-        if(current->getLeft())
-            q.push(current->getLeft());
-        if(current->getRight())
-            q.push(current->getRight());
-        q.pop();
-    
-        //  use --count or count--: if(--count==0)...
-        if(count == 0) {
-            cout<<endl;
-            count = q.size();
-        }
-        
-//        if(q.size() ==0) cout<<endl;  // level completed traverse
-        
-     
-    }
+    	size = q.size();    
+    	for(i=0;i<size;i++) {		
+	        TNode *current = q.front();
+	        cout<<current->getData()<<" ";
+	        if(current->getLeft())
+	            q.push(current->getLeft());
+	        if(current->getRight())
+	            q.push(current->getRight());
+	        q.pop();
+    	}	// end for
+    	
+        cout<<endl; // level traverse completed             
+    } // end while
+}
+
+
+void BSTree::print_binary_tree_level_order2() const 	//  08.20.26
+{
+	print_binary_tree_level_order2(root);
+}
+
+void BSTree::print_binary_tree_level_order2(TNode *t) const //  08.20.26
+{
+    if(!t) return;
+    int size=0, i=0;
+    deque<TNode *> DQ;
+    vector<int> VI; // list of node values at a given level
+    DQ.push_front(t);
+    cout<<endl<<__FUNCTION__<<"()"<<endl;
+    while(!DQ.empty()) {
+    	size = DQ.size();
+    	for(i=0;i<size;++i) {
+    		TNode *tmp = DQ.front();  
+    		VI.push_back(tmp->getData());
+    		if(tmp->getLeft()) DQ.push_back(tmp->getLeft());
+    		if(tmp->getRight()) DQ.push_back(tmp->getRight());
+    		DQ.pop_front(); // remove item from deque
+		}
+		//	Print vector contents and clear vector
+		vector<int>::iterator start = VI.begin();
+		vector<int>::iterator end = VI.end();
+		while(start!=end) {
+			cout<<*start<<" ";
+			++start;
+		}
+		cout<<endl; // Separator between levels
+		VI.clear(); 
+	}
 }
 
 #if 0
@@ -768,6 +757,12 @@ void BSTree::_print_tree_perimeter() const //	10.22.15
 
 
 
+
+void BSTree::Print_Leaves() const
+{
+	print_leaves(root);
+}
+
 //	10.22.15
 void BSTree::print_leaves(TNode*t) const
 {
@@ -781,7 +776,15 @@ void BSTree::print_leaves(TNode*t) const
 }
 
 
-
+//	Left subtree becomes right and right subtree becomes left.
+void BSTree::invert_Tree()  // 05.28.26
+{
+	if(isEmpty())	return; // Empty tree
+	TNode *OLD_LEFT = root->getLeft();
+	TNode *OLD_RIGHT = root->getRight();
+	root->setLeft(OLD_RIGHT);
+	root->setRight(OLD_LEFT);
+}
 
 int main(int argc, char **argv)
 {
@@ -789,15 +792,23 @@ int main(int argc, char **argv)
     int data[] = {4, 2, 6, 1, 3, 5, 7};
     int data1[]={3,1,5};
     int i=0;
-#if 0
+
     //  1. Create tree
     for(; i<sizeof(data)/sizeof(data[0]);i++)
         theTree.insert(data[i]);
   
     cout<<"\n\nInOrder Traversal"<<endl;
-    //  2A. Traverse InOrder - recursively    
     theTree.InOrderTraverse();
+    cout<<"\nTesting Level Order Traversal"<<endl;
+    theTree.print_binary_tree_level_order();  // Using queue
+//    theTree.print_binary_tree_level_order2();  // Using deque
+    return 0;  // Test only 08.20.26
     
+    //  2A. Traverse InOrder - recursively    
+    //	2AA. Test invertTree()
+    theTree.invert_Tree();
+    theTree.InOrderTraverse();
+#if 0    
     //  2B. Traverse InOrder - iteratively  
     theTree.InOrderTraverse_Iterative();  
     
@@ -814,7 +825,7 @@ int main(int argc, char **argv)
     
     //  4B. Traverse PostOrder - iteratively  
     theTree.PostOrderTraverse_Iterative();  
- #endif
+// #endif
     int data2[]=   {30,20, 10, 25, 40, 45, 50};
     
     //  5. Create tree
@@ -824,7 +835,7 @@ int main(int argc, char **argv)
 	cout<<"\n\nInOrder Traversal"<<endl;
     //  2A. Traverse InOrder - recursively    
     theTree.InOrderTraverse();    
-    
+//#if 0    
     /*
     //  6. Print level order traverse
     theTree.print_binary_tree_level_order();
@@ -837,13 +848,25 @@ int main(int argc, char **argv)
     t1.InOrderTraverse();
     
     cout<<endl<<endl;
-    t1.insert(35); t1.insert(36);
+    t1.insert(35); 
+	t1.insert(36);
     t1.InOrderTraverse();
     
     cout<<"\n\nTesting BSTree::print_tree_peremeter()"<<endl;
+    t1.Print_Leaves();
     //	prints 50 2 times, missing 45?
-    t1.print_tree_perimeter();
+ //   t1.print_tree_perimeter();
+//#if 0    
+    //	Test tree to remove
+    BSTree theTree2;
     
+    //  6. Create tree
+    for(i=0; i<sizeof(data2)/sizeof(data2[0]);i++)
+        theTree2.insert(data2[i]);
     
+    //  6A. Traverse InOrder - recursively    
+    theTree.InOrderTraverse();    
+//    theTree2.remove(10);
+#endif
     return 0;
 }    
