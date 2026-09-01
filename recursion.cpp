@@ -2,7 +2,7 @@
     recursion.cpp
     This file has test answers for interview questions
     I've seen so far. 
-    Since June 2010, bitwise operations questions are ALSO in bits.c
+    Since June 2010, some bitwise operations questions are ALSO in bits.c
 */    
 
 #include<iostream>
@@ -847,16 +847,13 @@ void reverse(char *str, char *newstr)
 //  test_reverse()
 void test_reverse()
 {
-    char *src="abcdef123456";
+    char src[]="abcdef123456";
     char revstr[strlen(src)+1];  // reversed src
     memset(revstr, 0, sizeof(revstr));
     reverse(src, revstr);
     cout<<revstr<<endl; 
 }
 
-//	END OF STRING REVERSE
-
-//	String Library Functions
 
 
 /*
@@ -878,8 +875,8 @@ int my_atoi(char *s)
 void test_my_atoi()
 {
      #define NUM_TEST_CASES     3        
-     char *src="159";  /* -123, +456, */
-	 char *mySrc[NUM_TEST_CASES]={"159", "-123", "+456"};
+     const char *src="159";  /* -123, +456, */
+	 const char *mySrc[NUM_TEST_CASES]={"159", "-123", "+456"};
 	 /*
      int x=my_atoi(src);
      
@@ -940,7 +937,7 @@ char * my_strtok(char *s1, const char *s2)
 {
     char *sbegin=NULL;
     char *send=NULL;
-    static char * ssave="";
+    static char * ssave=NULL;
     size_t offset=0;
     
     sbegin=s1?s1:ssave;
@@ -951,7 +948,7 @@ char * my_strtok(char *s1, const char *s2)
     sbegin+=offset;
     
     if(*sbegin == '\0') {
-        ssave="";
+        ssave=NULL;
         return NULL;
     }        
     send=strpbrk(sbegin, s2);
@@ -967,7 +964,8 @@ void test_my_strtok()
 {
     char src[]="A B";
     char *p=NULL;
-    char *SPACE=" ";
+//    char *SPACE=" ";
+    #define SPACE " "
     int num_tokens=0;
     
     p=my_strtok(src, SPACE);
@@ -1195,7 +1193,6 @@ int isPermutation()
 {
 	string s1("abcd"), s2("dbac");
 
-
 	sort(s1.begin(), s1.end());		
 	sort(s2.begin(), s2.end());		
 	return strcmp(s1.data(), s2.data())==0?1:0;
@@ -1321,7 +1318,7 @@ int reverseDigits(int n)
     
     
     vector<int> v;
-    if(n<=-1 && n>=9) return n;
+    if(n<=-1 && n>=-9) return n;
     if(n>=0 && n<=9) return n;
     
     if(n<0) {
@@ -1375,8 +1372,6 @@ int strstr2(string haystack, string needle)
     }
 
 	return -1;
-
-  
 }
 
 /*
@@ -1425,7 +1420,104 @@ bool isPalindrome(const char *src)
     return true;
 }
 
-//	End of String Library Functions
+
+
+//	05.28.26
+int reverse_integer_digits(int x) 
+{
+	//flag marks if x is negative
+	bool isNegative= false;
+	if (x < 0) {
+		x = 0 - x;
+		isNegative = true;
+	}
+	
+	int res = 0;
+	int p = x;
+	
+	while (p > 0) {
+		int mod = p % 10;
+		p = p / 10;
+		res = res * 10 + mod;
+	}
+	
+	if (isNegative) {
+		res = 0 - res;
+	}
+	return res;
+}
+
+
+//	05.28.26
+bool isPower4(int n)
+{
+    return ceil(log(n)/log(4)) == floor(log(n)/log(4));
+}
+
+
+//	05.29.26
+int mySqrt(int x) {
+	long long lo = 0, hi = x;
+	while (lo <= hi) {
+		long long mid = lo + (hi - lo) / 2;
+		long long s = mid * mid;
+		if (s == x) {
+			return mid;
+		} else if (s > x) {
+			hi = mid - 1;
+		} else {
+			lo = mid + 1;
+		}
+	}
+	return hi;
+}
+
+
+
+/*	07.05.26
+	Compute the combination n!/(n!*(n-r)!)
+*/
+long long int compute_combination(long long int n, long long int r)
+{
+	long long int d=n-r, result=1, i=0,low=0,high=0, start=1;
+	
+	if(r==0 || r==n) return 1;
+	assert(n>=r);
+	if(r>d) {
+		low = r;
+		high=d;
+	}
+	else {
+		high = r;
+		low =d;
+	}
+	
+	start = high+1;
+	for(i=start;i<=n;++i)
+		result*=i;
+		
+	for(i=low;i>1;--i)
+		result/=i;
+	return result;
+}
+
+
+//	08.25.26
+// Maximum subarray sum
+void KadaneAlgoExample()
+{
+    int arr[] = {-2,1,-3,4,-1,2,1,-5,4};
+
+    int sum=0,maxSum=arr[0];
+    int size = sizeof(arr)/sizeof(arr[0]);
+
+    for(int i=0;i<size;i++) {
+            sum = max(arr[i], sum+arr[i]);
+            maxSum = max(sum, maxSum);
+
+    }
+    cout<<"maxSum = "<<maxSum<<endl;
+}
 
 // main() has only methods to be tested! 
 int main(int argc, char**argv)
