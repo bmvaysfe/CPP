@@ -1401,6 +1401,23 @@ double myPow(double x, int n){
 } 
 
 
+
+// 10.08.26
+int isPalindromeNumber(int n)
+{
+    int t=n, rev=0;
+    while(t>0) {
+        rev=rev*10+t%10;
+        t/=10;
+    }
+    
+//    if(rev==n) puts("Palindrome");
+//    else puts("NOT Palindrome");
+	return rev==n;
+}
+
+
+
 //	04.10.2022
 bool isPalindrome(const char *src)
 {
@@ -1519,6 +1536,26 @@ void KadaneAlgoExample()
     cout<<"maxSum = "<<maxSum<<endl;
 }
 
+//	09.10.26
+int reverse_int(int x) 
+ {
+    int rev=0, digit=0, sign=1;
+    if(x<0) {
+    	sign=-1;
+    	x*=sign;
+	}
+    if(x>=0 && x<=9) return x*sign;
+    
+    while(x!=0){
+        digit = x%10;
+        if(rev>INT_MAX || rev<INT_MIN) return 0;
+        rev = rev*10+digit;
+        x/=10;
+    }
+    cout<<rev*sign<<endl;
+    return rev*sign;
+ }
+
 // main() has only methods to be tested! 
 int main(int argc, char**argv)
 {
@@ -1558,3 +1595,32 @@ int main(int argc, char**argv)
 	InvertCase2();
     return 0;
 }
+
+#if 0
+given an array, values [1,N] with 2 missing values. Find them,
+void find_indices(int *arr, int size)
+{
+    int i=0, idx =0, num=0;
+    for(i=0;i<size;i++)  {
+        num=arr[i];
+        idx = abs(num)-1;
+        if(arr[idx]>0)
+            arr[idx]=-arr[idx];
+    }
+
+    for(i=0;i<size;i++)  {
+        if(arr[i]>0)
+            cout<<i+1<<endl;
+    }
+
+}
+int main() {
+    int a[]={4,3,2,7,8,2,3,1};
+    int size = sizeof(a)/sizeof(a[0]);
+    find_indices(a,size);
+    std::cout << "Hello, World!" << std::endl;
+    return 0;
+}
+
+
+#endif
