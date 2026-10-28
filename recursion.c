@@ -1437,6 +1437,111 @@ void KadaneAlgoExample()
 }
 
 
+
+//	09.10.26
+int reverse_int(int x) 
+ {
+    int rev=0, digit=0, sign=1;
+    if(x<0) {
+    	sign=-1;
+    	x*=sign;
+	}
+    if(x>=0 && x<=9) return x*sign;
+    
+    while(x!=0){
+        digit = x%10;
+        if(rev>INT_MAX || rev<INT_MIN) return 0;
+        rev = rev*10+digit;
+        x/=10;
+    }    
+    return rev*sign;
+ }
+
+//	09.30.26
+int sum_of_digits()
+{
+	int n=2486, sum=0;
+	while(n>0) {
+		sum+=n%10;
+		n/=10;
+	}
+	return sum;
+
+}
+
+// 10.08.26
+int isPalindromeNumber(int n)
+{
+    int t=n, rev=0;
+    while(t>0) {
+        rev=rev*10+t%10;
+        t/=10;
+    }
+    
+    if(rev==n) puts("Palindrome");
+    else puts("NOT Palindrome");
+    return rev==n;
+}
+
+//	OK 10.07.26
+int find_2nd_largest(int *a, int size)
+{
+	int i=0, f=0, s=0;
+	for(i=0;i<size;i++) {
+		if(a[i]>f) {
+			s=f;
+			f=a[i];
+		}
+		else if(a[i]>s && a[i]<f) 
+			s=a[i];
+	}
+	return s;
+}
+		
+void count_bits(int n)
+{
+    int count=0, t=n;
+    while(t!=0) {
+        count+=t&1;
+        t>>=1;
+    }
+    printf("Count = %d\n", count);
+}		
+
+
+//	10.28.26
+int isAnagram(char *s1, char*s2) 
+{
+	int i=0, letters[26] = {0};
+	int size1 = strlen(s1);
+	int size2 = strlen(s2);
+	int pos=0;
+	char temp='\0';
+	
+	if(!s1 || !s2) return 0;
+	if(size1!= size2) return 0;
+	if(size1 ==0 && size2==0) return 1;
+	if(size1 ==0 || size2==0) return 0;
+	
+	for(i=0;i<size1;i++) {
+		temp = toupper(s1[i]);
+		pos = temp-'A';
+	//	printf("%c pos = %d\n", temp, pos);
+		++letters[pos];
+	}
+	
+	for(i=0;i<size2;i++) {
+		temp = toupper(s2[i]);
+		pos = temp-'A';
+	//	printf("%c pos = %d\n", temp, pos);
+		--letters[pos];
+	}
+	
+	for(i=0;i<26;i++) 
+		if(letters[i]>0)	return 0; // Not anagram
+		
+	return 1; // Anagram strings
+}
 int main(int argc, char**argv)
 {
 #if 0	
@@ -1448,7 +1553,42 @@ int main(int argc, char**argv)
 	test_Hanoi();
 	test_fix_array();
 	printf("(16!/(7!*9!) = %lli\n",compute_combination(16,7));
-#endif		
+	
 	KadaneAlgoExample();
+	printf("%d\n", reverse_int(-159));
+	printf("%d\n", reverse_int(159));
+#endif		
+	printf("%d\n",isAnagram("abc", "abc"));
+	printf("%d\n",isAnagram("abc", "bac"));
+	printf("%d\n",isAnagram("abc", "dbc"));
     return 0;
 }
+
+#if 0
+given an array, values [1,N] with 2 missing values. Find them,
+void find_indices(int *arr, int size)
+{
+    int i=0, idx =0, num=0;
+    for(i=0;i<size;i++)  {
+        num=arr[i];
+        idx = abs(num)-1;
+        if(arr[idx]>0)
+            arr[idx]=-arr[idx];
+    }
+
+    for(i=0;i<size;i++)  {
+        if(arr[i]>0)            
+            printf("%d\n", i+1);
+    }
+
+}
+int main() {
+    int a[]={4,3,2,7,8,2,3,1};
+    int size = sizeof(a)/sizeof(a[0]);
+    find_indices(a,size);
+    
+    return 0;
+}
+
+
+#endif
